@@ -1,0 +1,49 @@
+package bean.tet;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+
+//import org.junit.Assert;
+//import org.slf4j.Logger;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+
+@RestController
+public class testBeanController {
+
+    @Autowired
+    private TestBeanesrviceimpl testBeanesrviceimpl;
+
+    @RequestMapping("/test.do")
+//    @ResponseBody
+    public  String test(){
+        System.out.println("**************************************************************");
+        List<testBean> m=testBeanesrviceimpl.findAll();
+        System.out.println(m);
+        return m.toString();
+    }
+
+
+
+    @RequestMapping("/test1.do")
+//    @ResponseBody
+    public void testFindByPage() {
+        //page是gethub的
+        Page<testBean> persons = testBeanesrviceimpl.findByPage(1, 1);
+        // 需要把Page包装成PageInfo对象才能序列化。该插件也默认实现了一个PageInfo
+        PageInfo<testBean> pageInfo = new PageInfo<>(persons);
+        System.out.println(pageInfo.toString()+"***************************************");
+        System.out.println(JSON.toJSONString(pageInfo)+"***************************************");
+//        Assert.assertNotNull(persons);
+//        logger.debug(pageInfo.toString());
+//        logger.debug(JSON.toJSONString(pageInfo));
+    //    System.out.println(pageInfo.getList());
+//        return persons;
+    }
+}

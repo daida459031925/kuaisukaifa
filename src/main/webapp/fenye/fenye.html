@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Pagination - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="../css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../css/demo.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+</head>
+<body>
+<h2>Basic Pagination</h2>
+<p>The user can change page number and page size on page bar.</p>
+<div style="margin:20px 0;"></div>
+
+<div class="easyui-panel">
+    <div id="pp" class="easyui-pagination"  style="background:#efefef;border:1px solid #ccc;"></div>
+</div>
+</body>
+<script>
+    $('#pp').pagination({
+        total:200,//总数
+        pageSize:10,//页面大小
+        pageNumber:1,//起始也是几   默认是1
+        pageList:[10,20,50,100],//选择页面最多显示多少个
+//        loading:true,//定义数据是否正在载入
+        onSelectPage:function(pageNumber, pageSize){
+            //当页面中的分页表格内容改变时候
+            //只要是改变了那么就会执行这一段方法执行时可在
+            $(this).pagination({loading:true});
+//            alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
+            $(this).pagination({loading:false});
+        }
+    });
+</script>
+</html>
