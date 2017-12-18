@@ -8,7 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-@Controller//这是spring mvc处理请求信息层面
+@Controller//这是spring mvc处理请求信息层面 //这个主类必须在一个指定的包下 当时非java资源包下
+//idea的可以直接还原版本  将项目点击右键查看项目文件以及时间 show history  还原
 @SpringBootApplication//spring boot核心注解（主要目的是开启自动配置）
 /**
  * SpringBootApplication里有开启默认配置 加载spring-boot-starter-web依赖以后

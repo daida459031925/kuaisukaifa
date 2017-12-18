@@ -1,4 +1,4 @@
-package exception;
+package bean.exception;
 
 public class qunbuException extends RuntimeException{ //异常类首先对RuntimeException进行继承，然后继承父类所有方法后暂时不做操作
     private static final long serialVersionUID = 6435296194529486206L;

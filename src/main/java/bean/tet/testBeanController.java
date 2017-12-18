@@ -20,7 +20,7 @@ public class testBeanController {
     @Autowired
     private TestBeanesrviceimpl testBeanesrviceimpl;
 
-    @RequestMapping("/test.do")
+    @RequestMapping("/test.do")//测试demo是连接本地数据库
 //    @ResponseBody
     public  String test(){
         System.out.println("**************************************************************");

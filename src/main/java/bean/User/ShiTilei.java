@@ -1,10 +1,10 @@
-package User;
+package bean.User;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Entity
+//@Entity  这个是jap分页操作数据库的  使用mybist不用这个
 public class ShiTilei implements Serializable{
 
     private String id;//用户id  唯一标识符

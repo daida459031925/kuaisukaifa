@@ -2,4 +2,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bean.tet.TestBeanDao">
 <!-- 这个文件在这里的目的是 在这里先写sql  写好后直接cop到dao的mapper下 -->
+    <!-- 这个文件主要目的是  在DAO   直接使用sql  时候添加的  -->
 </mapper>

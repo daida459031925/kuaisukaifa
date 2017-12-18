@@ -1,7 +1,7 @@
 package tool;
 
-import User.ShiTilei;
-import exception.qunbuException;
+import bean.User.ShiTilei;
+import bean.exception.qunbuException;
 
 public class JSON {//目前对user实体类错误处理
 
@@ -11,6 +11,7 @@ public class JSON {//目前对user实体类错误处理
     private String message;
 
     public static final String ERROR = "-100";
+    public static final String PASS = "200";
 
     public JSON(String s, Object a) {
         this.code=s;
@@ -27,8 +28,13 @@ public class JSON {//目前对user实体类错误处理
         this.message=e.getMessage();
     }
 
+    public JSON(Object object){
+        this.data=object;
+        this.code=PASS;
+    }
 
-    public void JSON(){
+
+    public JSON(){
 
     }
 

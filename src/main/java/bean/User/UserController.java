@@ -1,12 +1,11 @@
-package User;
+package bean.User;
 
-import exception.qunbuException;
+import bean.exception.qunbuException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tool.JSON;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/User")
@@ -27,22 +26,22 @@ public class UserController {
         return "";//如果登录成功返还登录界面
     }
 
-    @RequestMapping("/reception/addUser.do")
-    public String addUser(ShiTilei shitilei){
-        userSerice.add(shitilei);
-        return "";//如果登录成功返还登录界面
+    @RequestMapping(value = "/reception/addUser.do",method = RequestMethod.POST)//method = RequestMethod.POST  请求一共有八种
+    public JSON addUser(@RequestBody ShiTilei shitilei){
+        Integer user=userSerice.add(shitilei);
+        return new JSON(user);//如果登录成功返还登录界面
     }
 
     @RequestMapping("/reception/delUser.do")
-    public String delUser(String id){
-        userSerice.del(id);
-        return "";//如果登录成功返还登录界面
+    public JSON delUser(String id){
+        //userSerice.del(id);  //删除用户暂时不做任何操作
+        return new JSON();//删除该用户
     }
 
-    @RequestMapping("/reception/fandAllUser.do")
-    public String fandAllUser(){
-        userSerice.fandAll();
-        return "";//如果登录成功返还登录界面
+    @RequestMapping(value = "/reception/fandAllUser.do",method = RequestMethod.GET)
+    public JSON fandAllUser(Shi){
+        List<ShiTilei> user=userSerice.fandAll();
+        return new JSON(user);//返还所有用户信息
     }
 
     @RequestMapping("/reception/sortUser.do")

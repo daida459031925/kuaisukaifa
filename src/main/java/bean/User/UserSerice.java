@@ -1,18 +1,14 @@
-package User;
-
-import org.apache.ibatis.annotations.Mapper;
+package bean.User;
 
 import java.util.List;
 
-@Mapper
-public interface UserDao {
+public interface UserSerice {
 
     public int add(ShiTilei shitilei);//添加
     public int del(String id);//删除
 
     public List<ShiTilei> fandAll();
-    public ShiTilei fand(String id);
+    public ShiTilei fand(String id,String pws);
 
     public List<ShiTilei> sort(String name);
-
 }

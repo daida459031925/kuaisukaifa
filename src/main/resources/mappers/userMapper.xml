@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="User.UserDao" >
+<mapper namespace="bean.User.UserDao" >
     <!-- 对这个语句开启二级缓存 -->
     <cache />
 
-    <insert id="add" parameterType="User.ShiTilei">
+    <insert id="add" parameterType="bean.User.ShiTilei">
             INSERT INTO `user` (`id`, `name`, `Date`, `dianhua`, `xingbei`, `shenfenzheng`, `pws`)
             VALUES (#{id},#{name}, #{Date},#{dianhua}, #{xingbei}, #{shenfenzheng}, #{pws});
     </insert>
@@ -13,17 +13,17 @@
         DELETE FROM `user` WHERE NAME = #{id}
     </update>
 
-    <select id="fandAll" resultType="User.ShiTilei" >
-        Select `id`, `name`, `Date`, `dianhua`, `xingbei`, `shenfenzheng`, `pws` from `user`
+    <select id="fandAll" resultType="bean.User.ShiTilei" >
+        Select `id`, `name`, `Date`, `dianhua`, `xingbei`, `shenfenzheng` from `user`
         where 1=1
 
     </select>
 
-    <select id="fand" resultType="User.ShiTilei" parameterType="string">
+    <select id="fand" resultType="bean.User.ShiTilei" parameterType="string">
         Select `id`, `name`, `Date`, `dianhua`, `xingbei`, `shenfenzheng`, `pws` from `user` WHERE id = #{id}
     </select>
 
-    <select id="sort" resultType="User.ShiTilei" parameterType="string">
+    <select id="sort" resultType="bean.User.ShiTilei" parameterType="string">
         Select `id`, `name`, `Date`, `dianhua`, `xingbei`, `shenfenzheng`, `pws` from `user` WHERE name = #{name}
         ORDER BY `Date` desc
     </select>
