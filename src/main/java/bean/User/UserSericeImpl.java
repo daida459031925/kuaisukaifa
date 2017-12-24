@@ -2,6 +2,8 @@ package bean.User;
 
 
 import bean.exception.*;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tool.MD5;
@@ -82,8 +84,10 @@ public class UserSericeImpl implements UserSerice {
     }
 
     @Override
-    public List<ShiTilei> fandAll() {
-        List<ShiTilei> user=userDao.fandAll();
+    public Page<ShiTilei> fandAll(int pageNO, int pageSize) {
+        PageHelper.startPage(pageNO,pageSize);
+        /**使用com.github.pagehelper.PageHelper 的包实现sql重写自动添加分页，然后自己在sql里添加过滤条件*/
+        Page<ShiTilei> user=userDao.fandAll();
         return user;
     }
 

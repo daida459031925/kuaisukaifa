@@ -1,6 +1,9 @@
 package bean.User;
 
 import bean.exception.qunbuException;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tool.JSON;
@@ -15,7 +18,7 @@ public class UserController {
     private UserSerice userSerice;
 
     @RequestMapping("/reception/login.do")
-    public String login(String id,String pws){
+    public String login( String id,String pws){
         userSerice.fand(id,pws);
         return "";//如果登录成功返还登录界面
     }
@@ -29,7 +32,7 @@ public class UserController {
     @RequestMapping(value = "/reception/addUser.do",method = RequestMethod.POST)//method = RequestMethod.POST  请求一共有八种
     public JSON addUser(@RequestBody ShiTilei shitilei){
         Integer user=userSerice.add(shitilei);
-        return new JSON(user);//如果登录成功返还登录界面
+        return new JSON(user);
     }
 
     @RequestMapping("/reception/delUser.do")
@@ -39,9 +42,23 @@ public class UserController {
     }
 
     @RequestMapping(value = "/reception/fandAllUser.do",method = RequestMethod.GET)
-    public JSON fandAllUser(Shi){
-        List<ShiTilei> user=userSerice.fandAll();
-        return new JSON(user);//返还所有用户信息
+    public JSON fandAllUser(/*通过@RequestParam注解指定具体的参数名称*/
+                            @RequestParam(value = "pageNO" ) int pageNO, @RequestParam(value = "pageSize")int pageSize){
+        /**
+         * page需要导入的都是是gethub的包
+         * 返还对象必须是Page<T>这种类型  这样框架才会给你分页信息
+         *
+         */
+        Page<ShiTilei> user=userSerice.fandAll(pageNO,pageSize);
+        /**
+         * 将page对象放入pageInfo  进行序列化后然后有分页信息
+         * 分页对象分页完毕后，不管是habeliete，还是mybites
+         * 都是一样会出现一个问题就是当前端请求页数大于分页内容中最大值时
+         * 不管以后如何添加分页的pageNO，都会返还最后一页的数据
+         * */
+        PageInfo<ShiTilei> pageInfo = new PageInfo<>(user);
+        System.out.println(pageInfo.getPageSize());
+        return new JSON(pageInfo);//返还所有用户信息
     }
 
     @RequestMapping("/reception/sortUser.do")

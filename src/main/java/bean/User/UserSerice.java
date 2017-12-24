@@ -1,5 +1,7 @@
 package bean.User;
 
+import com.github.pagehelper.Page;
+
 import java.util.List;
 
 public interface UserSerice {
@@ -7,7 +9,7 @@ public interface UserSerice {
     public int add(ShiTilei shitilei);//添加
     public int del(String id);//删除
 
-    public List<ShiTilei> fandAll();
+    public Page<ShiTilei> fandAll(int pageNO, int pageSize);
     public ShiTilei fand(String id,String pws);
 
     public List<ShiTilei> sort(String name);
