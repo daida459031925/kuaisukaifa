@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+<!-- 默认页面位置是index.html  这个是spring-boot-starter-thymeleaf 里面带的
+ 下建立static和templates两个文件夹
+static默认存放js、css等静态资源
+templates存放的是页面
+都是默认的路径，其中返回的页面类型缺省都是.html后缀
+现在我使用的是 freemarker    位置和资源是和thymeleaf 一样的但是动态页面资源是ftl文件
+-->
+<form action="/User/reception/login.do">
+    <!-- userSerice.fand(id,pws); -->
+    <p>账号：<input type="text" name="id" id="ids"/></p>
+    <p>密码：<input type="password" name="pws" id="pwss"/></p>
+    <p><input type="submit"/></p><p><a href="/User/reception/loginOut.do">dsfsdfsd</a></p>
+</form>
+<p>* @param shitilei
+    * @return
+    * 添加的是实体类
+    * String id;//用户id  唯一标识符
+    * String name;//用户名字
+    * Timestamp Date;//创建时间
+    * String dianhua;//电话
+    * String xingbei;//性别
+    * String shenfenzheng;//身份证
+    * String pws;//密码
+    * 传输格式是JSON</p>
+<form action="/User/reception/addUser.do" method="post">
+    <p>账号：<input type="text" name="id" id="id"/>唯一标识</p>
+    <p>名字：<input type="test" name="name" id="name"/></p>
+    <p>电话：<input type="test" name="dianhua" id="dianhua"/>目前未作验证</p>
+    <p>性别：<select name="xingbei" id="xingbei">
+        <option value=""></option>
+        <option value="男">男</option>
+        <option value="女">女</option>
+    </select></p>
+    <p>身份证：<input type="text" name="shenfenzheng" id="shenfenzheng"/>目前未作验证</p>
+    <p>密码：<input type="password" name="pws" id="pws"/></p>
+    <p><input type="submit"/></p>
+</form>
+</body>
+</html>

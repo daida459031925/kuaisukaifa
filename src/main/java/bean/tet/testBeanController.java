@@ -1,21 +1,21 @@
 package bean.tet;
 
+import bean.exception.AbstractController;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 
 //import org.junit.Assert;
 //import org.slf4j.Logger;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import tool.PageInfo;
 
 import java.util.List;
 
 
 @RestController
-public class testBeanController {
+public class testBeanController extends AbstractController{
 
     @Autowired
     private TestBeanesrviceimpl testBeanesrviceimpl;

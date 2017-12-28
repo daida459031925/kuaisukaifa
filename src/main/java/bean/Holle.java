@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //@Configuration//用@Configuration注解该类，等价 与XML中配置beans；相当于xml
 // 用@Bean标注方法等价于XML中配置bean。
 //@SpringBootConfiguration//在Spring Boot项目中推荐使用@ SpringBootConfiguration替代@Configuration
-public class Holle /*extends SpringBootServletInitializer*/{
+public class Holle extends SpringBootServletInitializer {//返回jsp页面必须继承SpringBootServletInitializer类重写里面的方法
     private static Logger logger = Logger.getLogger(Holle.class);//打印log日志
     public static void main(String[] args) {
         SpringApplication.run(Holle.class);//启动项目时候直接在main方法run一下
@@ -32,7 +34,7 @@ public class Holle /*extends SpringBootServletInitializer*/{
         //返回的页面内容，在yml或者properties那个配置文件中
         //配置后可以返回别的页面或者jsp
         System.out.println("************************************");
-        return "guanli/helo";
+        return "hello";
     }
 
 
@@ -44,9 +46,9 @@ public class Holle /*extends SpringBootServletInitializer*/{
 
      　　　 此时我们需要在启动类中继承SpringBootServletInitializer并实现configure方法，这个类的作用与在web.xml中配置负责初始化Spring应用上下文的监听器作用类似
      */
-    /*@Override
+    @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Holle.class);
-    }*/
+    }
 
 }

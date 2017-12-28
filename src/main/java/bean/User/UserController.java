@@ -1,47 +1,63 @@
 package bean.User;
 
-import bean.exception.qunbuException;
+import bean.exception.AbstractController;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tool.JSON;
 
-import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/User")
-public class UserController {
+public class UserController extends AbstractController{
 
     @Autowired
     private UserSerice userSerice;
 
     @RequestMapping("/reception/login.do")
-    public String login( String id,String pws){
-        userSerice.fand(id,pws);
-        return "";//如果登录成功返还登录界面
+    public String login(String id, String pws){
+        //userSerice.fand(id,pws);
+        //System.out.println("********************************");
+//        return "hello";
+        return "redirect:/guanli/helo.html";//重定向可以直接从定向；但是需要访问链接对，实在没把握就用绝对路径
     }
 
     @RequestMapping("/reception/loginOut.do")
     public String loginOut(String id,String pws){
         //登出
-        return "";//如果登录成功返还登录界面
+        return "hello";//如果登录成功返还登录界面
     }
 
+    /**
+     *
+     * @param shitilei
+     * @return
+     * 添加的是实体类
+     * String id;//用户id  唯一标识符
+     * String name;//用户名字
+     * Timestamp Date;//创建时间
+     * String dianhua;//电话
+     * String xingbei;//性别
+     * String shenfenzheng;//身份证
+     * String pws;//密码
+     * 传输格式是JSON
+     */
     @RequestMapping(value = "/reception/addUser.do",method = RequestMethod.POST)//method = RequestMethod.POST  请求一共有八种
-    public JSON addUser(@RequestBody ShiTilei shitilei){
+    public JSON addUser(ShiTilei shitilei) {
         Integer user=userSerice.add(shitilei);
         return new JSON(user);
     }
 
     @RequestMapping("/reception/delUser.do")
     public JSON delUser(String id){
-        //userSerice.del(id);  //删除用户暂时不做任何操作
-        return new JSON();//删除该用户
+        int i=userSerice.del(id);  //删除用户暂时不做任何操作
+        return new JSON(i);//删除该用户
     }
 
     @RequestMapping(value = "/reception/fandAllUser.do",method = RequestMethod.GET)
+    @ResponseBody
     public JSON fandAllUser(/*通过@RequestParam注解指定具体的参数名称*/
                             @RequestParam(value = "pageNO" ) int pageNO, @RequestParam(value = "pageSize")int pageSize){
         /**
@@ -67,12 +83,6 @@ public class UserController {
         return "";//如果登录成功返还登录界面
     }
 
-    @ExceptionHandler( Exception.class)
-    @ResponseBody
-    public JSON handleUserNotFound(
-            qunbuException e){
-        e.printStackTrace();
-        return new JSON("-500",e);
-    }
+
 
 }

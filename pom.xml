@@ -61,7 +61,7 @@
       所用常用框架集成包都在里面 但是此包必须放在  parent里这个为默认配置-->
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.6.RELEASE</version>
+    <version>1.5.9.RELEASE</version>
     <relativePath /> <!-- lookup parent from repository -->
     <!-- 默认配置导入之后只是配置环境有了  还要导入spring 对 boot 的配置的支持  -->
   </parent>
@@ -118,11 +118,14 @@
     </dependency>
 
     <!-- 引入分页   jap分页-->
-    <dependency>
+    <!--<dependency>
+      &lt;!&ndash;  Thymeleaf官方推荐的页面模板 官方推荐的不知道为什么不能直接使用带查询原因   &ndash;&gt;
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
+    </dependency>-->
+
     <dependency>
+
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
@@ -149,6 +152,25 @@
       <version>1.7.9</version>
     </dependency>
 
+     <!--启动freemarker模版引擎视图
+    定义一个模版后缀是ftl,注意是在classpath的templates目录下  现在我使用freemarker 模板进行后端页面配置 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-freemarker</artifactId>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!--  jstl  -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+    </dependency>
 
     <!--dependency>
       <groupId>wodekuaisukaifa</groupId>
@@ -156,7 +178,18 @@
       <version>1.0-SNAPSHOT</version>
     </dependency-->
 
-
+    <!-- 剔除内置tomcat   设置为Provided -->
+    <!--<dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    &lt;!&ndash; 为jsp提供编译&ndash;&gt;
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-jasper</artifactId>
+      &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
+    </dependency>-->
 
     <!--<dependency>
       &lt;!&ndash; spring boot  &ndash;&gt;

@@ -14,7 +14,7 @@
     </update>
 
     <select id="fandAll" resultType="bean.User.ShiTilei" >
-        Select `id`, `name`, `Date`, `dianhua`, `xingbei`, `shenfenzheng` from `user`
+        Select `id`, `name`, `Date`, `dianhua`, `xingbei`, `shenfenzheng` from `user` ORDER BY `Date` desc
     </select>
 
     <select id="fand" resultType="bean.User.ShiTilei" parameterType="string">
