@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //@Configuration//用@Configuration注解该类，等价 与XML中配置beans；相当于xml
 // 用@Bean标注方法等价于XML中配置bean。
 //@SpringBootConfiguration//在Spring Boot项目中推荐使用@ SpringBootConfiguration替代@Configuration
+@ServletComponentScan(basePackages = "Filter")//简单来说就是过滤器使用添加这个注解生效并且指定包名。
+//使用嵌入式容器时，可以使用@ServletComponentScan
+//启用@WebServlet，@ WebFilter和@WebListener注释类的自动注册。
+//如果使用外置容器的话，容器的内置发现机制将会被使用，而不需要使用这条注解。
 public class Holle extends SpringBootServletInitializer {//返回jsp页面必须继承SpringBootServletInitializer类重写里面的方法
     private static Logger logger = Logger.getLogger(Holle.class);//打印log日志
     public static void main(String[] args) {

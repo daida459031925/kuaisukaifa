@@ -70,7 +70,7 @@
   </filter-mapping>
     -->
 
-  <!-- Servlet Context Listener ======================================= -->
+  <!-- Servlet Context ContextListener ======================================= -->
 
   <!--
     - Declare Spring context listener which sets up the Spring Application Context
