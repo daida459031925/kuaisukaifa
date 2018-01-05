@@ -5,6 +5,9 @@ import bean.exception.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import tool.MD5;
 import tool.dianhuayanzheng;
@@ -13,11 +16,15 @@ import tool.mimafuzhadu;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserSericeImpl implements UserSerice {
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
      *
@@ -97,11 +104,27 @@ public class UserSericeImpl implements UserSerice {
         return i;
     }
 
+
+    /**
+     * redis_config这个类是其中一种高级的方式来去管理redis目前没有成功
+     * 简单的方式来实现redis管理方式是以下示例
+     * @param pageNO
+     * @param pageSize
+     * @return
+     */
     @Override
     public Page<ShiTilei> fandAll(int pageNO, int pageSize) {
+        String key = "iiiiii";//这个地方为了简单直接写了KEY的值，实际上的架构应该实现或者创建一个类里面全部存放常量来进行同一管理，或者来实现配置文件来管理常量
+        ValueOperations<String,Page<ShiTilei>> s=redisTemplate.opsForValue();//使用redisTemplate和jdbcTemplate差不多而spring boot以及自动集成了redisTemplate所以只需要在application中配置好就可以直接使用
+        if(redisTemplate.hasKey(key)){//这个位置是来判断redisTemplate中是否存在这个KEY不存在的话就走下面调用数据库，存在的话就直接返还，这样就可以节省下来很多数据查询时间
+            System.err.println("这里测试缓存机制内容***********************************");
+            return s.get(key);
+        }
+
         PageHelper.startPage(pageNO,pageSize);
         /**使用com.github.pagehelper.PageHelper 的包实现sql重写自动添加分页，然后自己在sql里添加过滤条件*/
         Page<ShiTilei> user=userDao.fandAll();
+        s.set(key,user,60/*保存多少秒*/, TimeUnit.SECONDS/*单位是秒*/);//这个位置是保存KEY，保存数据，保存时间，Time的单位.内容很多这个是简单操作
         return user;
     }
 

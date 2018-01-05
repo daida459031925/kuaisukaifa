@@ -2,8 +2,11 @@ package bean.User;
 
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
+
 
 @Mapper
 public interface UserDao {
