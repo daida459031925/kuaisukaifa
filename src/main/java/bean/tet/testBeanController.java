@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-public class testBeanController extends AbstractController{
+public class testBeanController /*之前的方式extends AbstractController*/{
 
     @Autowired
     private TestBeanesrviceimpl testBeanesrviceimpl;

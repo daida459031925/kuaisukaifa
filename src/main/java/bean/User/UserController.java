@@ -12,7 +12,7 @@ import tool.JSON;
 
 @Controller
 @RequestMapping("/User")
-public class UserController extends AbstractController{
+public class UserController /*之前的方式extends AbstractController*/{
 
     @Autowired
     private UserSerice userSerice;

@@ -40,8 +40,8 @@ public class UserSericeImpl implements UserSerice {
      * 信息进行集中管理
      */
     @Override
-    public int add(ShiTilei shitilei) throws
-            idException,nameException,dianhuaException,xingbeiException,shenfenzhengException,pwsException{
+    public int add(ShiTilei shitilei) /*throws
+            idException,nameException,dianhuaException,xingbeiException,shenfenzhengException,pwsException*/{
 //        private String id;//用户id  唯一标识符
 //        private String name;//用户名字
 //        private Timestamp Date;//创建时间
@@ -95,7 +95,7 @@ public class UserSericeImpl implements UserSerice {
     }
 
     @Override
-    public int del(String id) throws idException{
+    public int del(String id) /*throws idException*/{
         if(id==null || id.trim().isEmpty()){
             //返还错误信息
             throw new idException("没有账号无法删除");
@@ -129,7 +129,7 @@ public class UserSericeImpl implements UserSerice {
     }
 
     @Override
-    public ShiTilei fand(String id,String pws) throws idException,pwsException{
+    public ShiTilei fand(String id,String pws) /*throws idException,pwsException*/{
         if(id==null || id.trim().isEmpty()){
             //异常处理
             throw new idException("账号为空");
@@ -151,7 +151,7 @@ public class UserSericeImpl implements UserSerice {
     }
 
     @Override
-    public List<ShiTilei> sort(String name) throws nameException{
+    public List<ShiTilei> sort(String name) /*throws nameException*/{
         if(name==null || name.trim().isEmpty()){
             throw new nameException("参数为空");
         }

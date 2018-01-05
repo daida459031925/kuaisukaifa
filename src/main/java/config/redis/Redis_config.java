@@ -104,7 +104,7 @@ public class Redis_config extends CachingConfigurerSupport{
      * @return
      */
     @Bean
-    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory/*这个地方不知道为什么一直报错*/) {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
 
