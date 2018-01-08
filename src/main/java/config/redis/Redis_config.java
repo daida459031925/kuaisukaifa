@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
  */
 @Configuration//这个注解的意思是java配置类
 @EnableCaching//这个类是缓存配置类
-@PropertySource(value = {"application-redis.properties"})//此注解主要作用时实现指定properties的文件导入
+//@PropertySource(value = {"application-redis.properties"})//此注解主要作用时实现指定properties的文件导入
 public class Redis_config extends CachingConfigurerSupport{
 
 
@@ -41,7 +41,7 @@ public class Redis_config extends CachingConfigurerSupport{
     //import org.springframework.beans.factory.annotation.Value;
     //注意是这个包
     @Value(value = "${spring.redis.timeout}")
-    private Long timeOut;
+    public Long timeOut;//依赖注入的时候不能用static
 
 
     /**

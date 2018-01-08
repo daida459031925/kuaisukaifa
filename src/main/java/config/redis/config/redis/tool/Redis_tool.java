@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -73,7 +74,7 @@ public class Redis_tool {
      * @return
      */
     public void set(final String key,Object value){
-        redisTemplate.opsForValue().set(key,value);
+        redisTemplate.opsForValue().set(key,value);//目前不知道如何配置默认过期时间
     }
 
     /**
@@ -178,5 +179,43 @@ public class Redis_tool {
     public Set<Object> rangeByScore(String key,double scoure,double scoure1){
         ZSetOperations<String,Object> zset = redisTemplate.opsForZSet();
         return zset.rangeByScore(key,scoure,scoure1);
+    }
+
+    public static String getBaoming_Classname_fangfaming(Object This,String... name
+     /*添加方法名，由于方法名和jvm有关所以还是开发者来维护默认填写自己的方法名或者添加其他参数*/){
+        //System.out.println(This.getClass().getName());//包名.类名
+        StringBuilder sb = new StringBuilder();
+        sb.append(This.getClass().getName());
+        for (String str:name) {
+            sb.append(".");
+            sb.append(str);
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * 传入全类名获得对应类中所有方法名和参数名
+     */
+    @SuppressWarnings("rawtypes")
+    private static void getMethodInfo(String pkgName) {
+        //这个方法传入完整的包名例如 java.util.HashSet   会得到所有包名以下的方法名
+        //但是这个方法效率不高，也不是这么单独使用的
+        try {
+            Class clazz = Class.forName(pkgName);
+            Method[] methods = clazz.getMethods();//import java.lang.reflect.Method;导入这个包
+            for (Method method : methods) {
+                String methodName = method.getName();
+                System.out.println("方法名称:" + methodName);
+                Class<?>[] parameterTypes = method.getParameterTypes();
+                for (Class<?> clas : parameterTypes) {
+                    String parameterName = clas.getName();
+                    System.out.println("参数名称:" + parameterName);
+                }
+                System.out.println("*****************************");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

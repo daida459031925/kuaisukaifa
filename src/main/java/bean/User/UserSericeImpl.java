@@ -4,8 +4,12 @@ package bean.User;
 import bean.exception.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import config.redis.Redis_config;
+import config.redis.config.redis.tool.Redis_tool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -19,12 +23,19 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
+//@PropertySource(value = {"application-redis.properties"})//此注解主要作用时实现指定properties的文件导入
 public class UserSericeImpl implements UserSerice {
     @Autowired
-    private UserDao userDao;
+    private UserDao userDao;//不知道为什么会一直报错,但是不影响使用
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;//可以直接使用这个或者使用自己封装的工具类
+
+    @Autowired
+    private Redis_tool redis_tool;
+
+    @Value(value = "${spring.redis.timeout}")
+    public Long timeOut;//依赖注入的时候不能用static
 
     /**
      *
@@ -114,17 +125,25 @@ public class UserSericeImpl implements UserSerice {
      */
     @Override
     public Page<ShiTilei> fandAll(int pageNO, int pageSize) {
-        String key = "iiiiii";//这个地方为了简单直接写了KEY的值，实际上的架构应该实现或者创建一个类里面全部存放常量来进行同一管理，或者来实现配置文件来管理常量
-        ValueOperations<String,Page<ShiTilei>> s=redisTemplate.opsForValue();//使用redisTemplate和jdbcTemplate差不多而spring boot以及自动集成了redisTemplate所以只需要在application中配置好就可以直接使用
-        if(redisTemplate.hasKey(key)){//这个位置是来判断redisTemplate中是否存在这个KEY不存在的话就走下面调用数据库，存在的话就直接返还，这样就可以节省下来很多数据查询时间
+//        String key = "iiiiii";//这个地方为了简单直接写了KEY的值，实际上的架构应该实现或者创建一个类里面全部存放常量来进行同一管理，或者来实现配置文件来管理常量
+//        ValueOperations<String,Page<ShiTilei>> s=redisTemplate.opsForValue();//使用redisTemplate和jdbcTemplate差不多而spring boot以及自动集成了redisTemplate所以只需要在application中配置好就可以直接使用
+//        if(redisTemplate.hasKey(key)){//这个位置是来判断redisTemplate中是否存在这个KEY不存在的话就走下面调用数据库，存在的话就直接返还，这样就可以节省下来很多数据查询时间
+//            System.err.println("这里测试缓存机制内容***********************************");
+//            return s.get(key);
+//        }
+        ///*添加方法名，由于方法名和jvm有关所以还是开发者来维护默认填写自己的方法名或者添加其他参数*/
+        //由于获取方法名比较耗时所以直接由编写代码的人进行维护
+        String key=Redis_tool.getBaoming_Classname_fangfaming(this,"fandAll");
+        if(redis_tool.exists(key)){
             System.err.println("这里测试缓存机制内容***********************************");
-            return s.get(key);
+            return (Page<ShiTilei>) redis_tool.get(key);
         }
 
         PageHelper.startPage(pageNO,pageSize);
         /**使用com.github.pagehelper.PageHelper 的包实现sql重写自动添加分页，然后自己在sql里添加过滤条件*/
         Page<ShiTilei> user=userDao.fandAll();
-        s.set(key,user,60/*保存多少秒*/, TimeUnit.SECONDS/*单位是秒*/);//这个位置是保存KEY，保存数据，保存时间，Time的单位.内容很多这个是简单操作
+        redis_tool.set(key,user,timeOut);
+//        s.set(key,user,60/*保存多少秒*/, TimeUnit.SECONDS/*单位是秒*/);//这个位置是保存KEY，保存数据，保存时间，Time的单位.内容很多这个是简单操作
         return user;
     }
 
