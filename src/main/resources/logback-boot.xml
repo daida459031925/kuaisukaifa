@@ -1,4 +1,5 @@
 <configuration>
+    <!-- 2018.1.8上午还可以用，下午就不能输出日志 现在换成 application.properties输出日志到当前jar包位置-->
     <!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,%i索引【从数字0开始递增】,,, -->
     <!-- appender是configuration的子节点，是负责写日志的组件。 -->
     <!-- ConsoleAppender：把日志输出到控制台 -->

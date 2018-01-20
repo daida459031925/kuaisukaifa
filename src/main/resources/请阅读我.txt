@@ -1,1 +1,2 @@
-1.本项目使用的是spring boot打包成
+1.本项目使用的是spring boot打包成jar 或者war  但是需要知道开发环境
+    例如jdk版本 rdies版本等

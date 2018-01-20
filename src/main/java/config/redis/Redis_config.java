@@ -129,6 +129,9 @@ public class Redis_config extends CachingConfigurerSupport{
         mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         serializer.setObjectMapper(mapper);
 
+        // 开启事务支持
+        template.setEnableTransactionSupport(true);
+
         template.setValueSerializer(serializer);
         //使用StringRedisSerializer来序列化和反序列化redis的key值
         template.setKeySerializer(new StringRedisSerializer());
