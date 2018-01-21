@@ -1,9 +1,10 @@
 package tool;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class dianhuayanzheng {
+public class dianhuayanzheng implements Serializable{
 
     /**
      * 手机号验证
