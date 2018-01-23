@@ -9,6 +9,7 @@ import java.security.MessageDigest;
  */
 public class MD5 implements Serializable{
     private static Logger logger = Logger.getLogger(MD5.class);//打印log日志
+    private static final long serialVersionUID = 1L;
     /**
      * Created by yangyibo on 17/2/7.
      */

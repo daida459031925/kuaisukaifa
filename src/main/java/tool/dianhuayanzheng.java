@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class dianhuayanzheng implements Serializable{
-
+    private static final long serialVersionUID = 1L;
     /**
      * 手机号验证
      *
