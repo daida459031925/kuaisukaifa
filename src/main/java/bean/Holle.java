@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //使用嵌入式容器时，可以使用@ServletComponentScan
 //启用@WebServlet，@ WebFilter和@WebListener注释类的自动注册。
 //如果使用外置容器的话，容器的内置发现机制将会被使用，而不需要使用这条注解。
-@ComponentScan(basePackages = {"bean","config","tool"})//这个注解的作用是指定扫描包，默认扫描的时候是当前这个类的包对应的子包的所有类
+@ComponentScan(basePackages = {"bean","config"})//这个注解的作用是指定扫描包，默认扫描的时候是当前这个类的包对应的子包的所有类
 //当写了的时候需要注意basePackages = {"bean","config"} 和数组一样对需要扫描的包进行赋值，这个样子就可以自定义包的存放位置.
 //当添加了ComponentScan这个以后必须需要指定你的主包，然后一次添加需要扫描的附包，不然就无法扫描到则无法运行.
 //@ImportResource("/xx/xx.xml")//导入指定xml此功能没有探究
