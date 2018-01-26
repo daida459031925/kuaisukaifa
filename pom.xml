@@ -228,6 +228,14 @@
       <!-- 这个目前最新版本是1.4.7 而spring boot版本管理的最高版本是1.5.9因此需要指定版本 -->
     </dependency>
 
+    <!-- 目前只知道里面有String工具类
+    在使用的使用一定要注意使用的包-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.7</version><!-- 目前2018124这时候是最新的3.7 -->
+    </dependency>
+
 
     <!-- 单元测试. -->
     <!--<dependency>
