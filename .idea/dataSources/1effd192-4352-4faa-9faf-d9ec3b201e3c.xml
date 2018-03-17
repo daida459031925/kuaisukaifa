@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="kuaisukaifa@rm-uf6o34cmti59695hmo.mysql.rds.aliyuncs.com">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="kuaisukaifa">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="daida">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="4" parent="1" name="db_forum">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="5" parent="1" name="ddkaifa_df">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="6" parent="1" name="information_schema">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="7" parent="1" name="mysql">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="8" parent="1" name="performance_schema">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="9" parent="1" name="sys">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="10" parent="1" name="tale">
+      <Visible>1</Visible>
+    </schema>
+  </database-model>
+</dataSource>
