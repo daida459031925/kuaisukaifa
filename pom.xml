@@ -52,6 +52,14 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
 
+
+      <plugin>
+        <!-- 使用这个可以保证打出来的jar直接运行  而且必须放在build 里-->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+
     </plugins>
   </build>
 
@@ -236,6 +244,25 @@
       <version>3.7</version><!-- 目前2018124这时候是最新的3.7 -->
     </dependency>
 
+
+<!--dubbo 分布式-->
+    <dependency>
+      <groupId>io.dubbo.springboot</groupId>
+      <artifactId>spring-boot-starter-dubbo</artifactId>
+    </dependency>
+
+    <!--zookeeper 分布式-->
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+      <version>3.4.9</version>
+    </dependency>
+
+
+    <!--作者：Chinesszz-->
+    <!--链接：https://www.jianshu.com/p/39410f3e4c40-->
+    <!--來源：简书-->
+    <!--著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。-->
 
     <!-- 单元测试. -->
     <!--<dependency>

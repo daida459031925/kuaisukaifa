@@ -30,12 +30,13 @@ public class PublicStaticFinal implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
+    private static final String PRO= "changliang.properties";
     protected static final String ERROR;
     protected static final String PASS;
     static {
         Properties properties = new Properties();
         try {
-            properties.load(PublicStaticFinal.class.getClassLoader().getResourceAsStream("changliang.properties"));
+            properties.load(PublicStaticFinal.class.getClassLoader().getResourceAsStream(PRO));
             ERROR=properties.getProperty("json.ERROR");
             PASS=properties.getProperty("json.PASS");
         } catch (IOException e) {
