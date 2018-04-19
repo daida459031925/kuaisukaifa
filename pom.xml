@@ -245,7 +245,7 @@
     </dependency>
 
 
-<!--dubbo 分布式-->
+    <!--dubbo 分布式-->
     <dependency>
       <groupId>io.dubbo.springboot</groupId>
       <artifactId>spring-boot-starter-dubbo</artifactId>
@@ -270,6 +270,13 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>-->
+
+    <!-- 比较牛逼的基础插入查找删除的 mybatis 实体应用类似于 hibernate的基础数据-->
+    <dependency>
+      <groupId>tk.mybatis</groupId>
+      <artifactId>mapper</artifactId>
+      <version>4.0.1</version>
+    </dependency>
 
   </dependencies>
 
