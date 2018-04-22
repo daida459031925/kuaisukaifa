@@ -1,5 +1,6 @@
 package bean.User;
 
+import bean.Dao.BasicDAO;
 import bean.exception.AbstractController;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
@@ -12,10 +13,14 @@ import tool.JSON;
 
 @Controller
 @RequestMapping("/User")
-public class UserController /*之前的方式extends AbstractController*/{
+//@Slf4j  日志依赖  org.projectlombok.lombok
+public class UserController /*之前的方式extends AbstractController*/ <Ba extends BasicDAO ,ShiTilei>{
 
     @Autowired
     private UserSerice userSerice;
+
+    @Autowired
+    protected Ba basicDao;
 
     @RequestMapping("/reception/login.do")
     public String login(String id, String pws){
@@ -75,6 +80,13 @@ public class UserController /*之前的方式extends AbstractController*/{
          * */
         PageInfo<ShiTilei> pageInfo = new PageInfo<>(user);
         System.out.println(pageInfo.getPageSize());
+
+
+        /**
+         * 测试tk.mapper包的查询
+         */
+        basicDao.selectAll();
+        System.out.println();
         return new JSON(pageInfo);//返还所有用户信息
     }
 
