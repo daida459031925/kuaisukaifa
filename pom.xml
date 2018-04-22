@@ -278,6 +278,12 @@
       <version>4.0.1</version>
     </dependency>
 
+    <!-- 非阻塞式web 目前还没开始看 2018419 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
+
     <!-- xml解析器比DOM4J快6倍 -->
     <dependency>
       <groupId>xpp3</groupId>
