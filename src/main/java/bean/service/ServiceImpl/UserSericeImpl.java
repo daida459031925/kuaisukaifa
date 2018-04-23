@@ -1,17 +1,16 @@
-package bean.User;
+package bean.service.ServiceImpl;
 
 
+import bean.Dao.UserDao;
+import bean.Entity.UserEntity;
 import bean.exception.*;
+import bean.service.UserSerice;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import config.redis.Redis_config;
 import config.redis.config.redis.tool.Redis_tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import tool.MD5;
 import tool.dianhuayanzheng;
@@ -20,7 +19,6 @@ import tool.mimafuzhadu;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Service
 //@PropertySource(value = {"application-redis.properties"})//此注解主要作用时实现指定properties的文件导入
@@ -51,7 +49,7 @@ public class UserSericeImpl implements UserSerice {
      * 信息进行集中管理
      */
     @Override
-    public int add(ShiTilei shitilei) /*throws
+    public int add(UserEntity shitilei) /*throws
             idException,nameException,dianhuaException,xingbeiException,shenfenzhengException,pwsException*/{
 //        private String id;//用户id  唯一标识符
 //        private String name;//用户名字
@@ -124,9 +122,9 @@ public class UserSericeImpl implements UserSerice {
      * @return
      */
     @Override
-    public Page<ShiTilei> fandAll(int pageNO, int pageSize) {
+    public Page<UserEntity> fandAll(int pageNO, int pageSize) {
 //        String key = "iiiiii";//这个地方为了简单直接写了KEY的值，实际上的架构应该实现或者创建一个类里面全部存放常量来进行同一管理，或者来实现配置文件来管理常量
-//        ValueOperations<String,Page<ShiTilei>> s=redisTemplate.opsForValue();//使用redisTemplate和jdbcTemplate差不多而spring boot以及自动集成了redisTemplate所以只需要在application中配置好就可以直接使用
+//        ValueOperations<String,Page<UserEntity>> s=redisTemplate.opsForValue();//使用redisTemplate和jdbcTemplate差不多而spring boot以及自动集成了redisTemplate所以只需要在application中配置好就可以直接使用
 //        if(redisTemplate.hasKey(key)){//这个位置是来判断redisTemplate中是否存在这个KEY不存在的话就走下面调用数据库，存在的话就直接返还，这样就可以节省下来很多数据查询时间
 //            System.err.println("这里测试缓存机制内容***********************************");
 //            return s.get(key);
@@ -136,19 +134,19 @@ public class UserSericeImpl implements UserSerice {
         String key=Redis_tool.getBaoming_Classname_fangfaming(this,"fandAll");
         if(redis_tool.exists(key)){
             System.err.println("这里测试缓存机制内容***********************************");
-            return (Page<ShiTilei>) redis_tool.get(key);
+            return (Page<UserEntity>) redis_tool.get(key);
         }
 
         PageHelper.startPage(pageNO,pageSize);
         /**使用com.github.pagehelper.PageHelper 的包实现sql重写自动添加分页，然后自己在sql里添加过滤条件*/
-        Page<ShiTilei> user=userDao.fandAll();
+        Page<UserEntity> user=userDao.fandAll();
         redis_tool.set(key,user,timeOut);
 //        s.set(key,user,60/*保存多少秒*/, TimeUnit.SECONDS/*单位是秒*/);//这个位置是保存KEY，保存数据，保存时间，Time的单位.内容很多这个是简单操作
         return user;
     }
 
     @Override
-    public ShiTilei fand(String id,String pws) /*throws idException,pwsException*/{
+    public UserEntity fand(String id, String pws) /*throws idException,pwsException*/{
         if(id==null || id.trim().isEmpty()){
             //异常处理
             throw new idException("账号为空");
@@ -157,7 +155,7 @@ public class UserSericeImpl implements UserSerice {
             //异常处理
             throw new pwsException("密码为空");
         }
-        ShiTilei user=userDao.fand(id);
+        UserEntity user=userDao.fand(id);
         if(user==null){
             //账号错误
             throw new idException("账号错误");
@@ -170,11 +168,11 @@ public class UserSericeImpl implements UserSerice {
     }
 
     @Override
-    public List<ShiTilei> sort(String name) /*throws nameException*/{
+    public List<UserEntity> sort(String name) /*throws nameException*/{
         if(name==null || name.trim().isEmpty()){
             throw new nameException("参数为空");
         }
-        List<ShiTilei> user=userDao.sort(name);
+        List<UserEntity> user=userDao.sort(name);
         return user;
     }
 }

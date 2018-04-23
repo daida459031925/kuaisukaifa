@@ -1,6 +1,6 @@
 package tool;
 
-import bean.User.ShiTilei;
+import bean.Entity.UserEntity;
 import bean.exception.qunbuException;
 
 public class JSON extends PublicStaticFinal{//目前对user实体类错误处理
@@ -41,7 +41,7 @@ public class JSON extends PublicStaticFinal{//目前对user实体类错误处理
         this.message=message.getMessage();
     }
 
-    public void JSON(String code, ShiTilei data, Throwable  message){
+    public void JSON(String code, UserEntity data, Throwable  message){
         this.code=code;
         this.data=data;
         this.message=message.getMessage();

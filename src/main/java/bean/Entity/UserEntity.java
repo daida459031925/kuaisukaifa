@@ -1,11 +1,10 @@
-package bean.User;
+package bean.Entity;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 //@Entity  这个是jap分页操作数据库的  使用mybist不用这个
-public class ShiTilei implements Serializable{
+public class UserEntity implements Serializable{
 
     private String id;//用户id  唯一标识符
     private String name;//用户名字
@@ -17,7 +16,7 @@ public class ShiTilei implements Serializable{
 
     @Override
     public String toString() {
-        return "ShiTilei{" +
+        return "UserEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", Date=" + Date +

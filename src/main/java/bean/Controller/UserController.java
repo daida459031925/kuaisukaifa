@@ -1,11 +1,10 @@
-package bean.User;
+package bean.Controller;
 
-import bean.Dao.BasicDAO;
-import bean.exception.AbstractController;
+import bean.Entity.UserEntity;
+import bean.service.UserSerice;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tool.JSON;
@@ -14,13 +13,13 @@ import tool.JSON;
 @Controller
 @RequestMapping("/User")
 //@Slf4j  日志依赖  org.projectlombok.lombok
-public class UserController /*之前的方式extends AbstractController*/ <Ba extends BasicDAO ,ShiTilei>{
+public class UserController /*之前的方式extends AbstractController*//* <Ba extends BasicDAO ,UserEntity>*/{
 
     @Autowired
     private UserSerice userSerice;
 
-    @Autowired
-    protected Ba basicDao;
+//    @Autowired
+//    protected Ba basicDao;
 
     @RequestMapping("/reception/login.do")
     public String login(String id, String pws){
@@ -51,7 +50,7 @@ public class UserController /*之前的方式extends AbstractController*/ <Ba ex
      * 传输格式是JSON
      */
     @RequestMapping(value = "/reception/addUser.do",method = RequestMethod.POST)//method = RequestMethod.POST  请求一共有八种
-    public JSON addUser(ShiTilei shitilei) {
+    public JSON addUser(UserEntity shitilei) {
         Integer user=userSerice.add(shitilei);
         return new JSON(user);
     }
@@ -71,21 +70,21 @@ public class UserController /*之前的方式extends AbstractController*/ <Ba ex
          * 返还对象必须是Page<T>这种类型  这样框架才会给你分页信息
          *
          */
-        Page<ShiTilei> user=userSerice.fandAll(pageNO,pageSize);
+        Page<UserEntity> user=userSerice.fandAll(pageNO,pageSize);
         /**
          * 将page对象放入pageInfo  进行序列化后然后有分页信息
          * 分页对象分页完毕后，不管是habeliete，还是mybites
          * 都是一样会出现一个问题就是当前端请求页数大于分页内容中最大值时
          * 不管以后如何添加分页的pageNO，都会返还最后一页的数据
          * */
-        PageInfo<ShiTilei> pageInfo = new PageInfo<>(user);
+        PageInfo<UserEntity> pageInfo = new PageInfo<>(user);
         System.out.println(pageInfo.getPageSize());
 
 
         /**
          * 测试tk.mapper包的查询
          */
-        basicDao.selectAll();
+//        basicDao.selectAll();
         System.out.println();
         return new JSON(pageInfo);//返还所有用户信息
     }
