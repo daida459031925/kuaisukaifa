@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 //@Entity  这个是jap分页操作数据库的  使用mybist不用这个
+
 public class UserEntity implements Serializable{
+
+//    INSERT INTO `daida`.`user` (`id`, `name`, `Date`, `dianhua`, `xingbei`, `shenfenzheng`, `pws`) VALUES ('6', '6', '2018-01-03 13:54:06', '6', '6', '6', '6');
+
 
     private String id;//用户id  唯一标识符
     private String name;//用户名字

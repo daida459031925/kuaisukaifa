@@ -7,7 +7,7 @@ import bean.exception.*;
 import bean.service.UserSerice;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import config.redis.config.redis.tool.Redis_tool;
+import config.redis.tool.Redis_tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,7 +23,7 @@ import java.util.List;
 @Service
 //@PropertySource(value = {"application-redis.properties"})//此注解主要作用时实现指定properties的文件导入
 public class UserSericeImpl implements UserSerice {
-    @Autowired
+//    @Autowired
     private UserDao userDao;//不知道为什么会一直报错,但是不影响使用
 
     @Autowired

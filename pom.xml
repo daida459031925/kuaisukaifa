@@ -79,6 +79,12 @@
     <!--配置JDK编译版本. -->
     <!-- 创建项目到时候一定需要和客户那边的环境对上否则开发出来环境不对不可运行-->
     <java.version>1.8</java.version><!-- 这个编译版本最好和你开发 还有客户电脑的jdk一样  spring boot 最低是要1.8 -->
+
+
+    <!--&lt;!&ndash; 指定mapper包的位置 &ndash;&gt;-->
+    <!--<targetMapperPackage>bean.Mapper</targetMapperPackage>-->
+    <!--&lt;!&ndash; 制定实体类存放位置 &ndash;&gt;-->
+    <!--<targetModelPackage>bean.Entity</targetModelPackage>-->
   </properties>
 
 
@@ -274,8 +280,11 @@
     <!-- 比较牛逼的基础插入查找删除的 mybatis 实体应用类似于 hibernate的基础数据-->
     <dependency>
       <groupId>tk.mybatis</groupId>
-      <artifactId>mapper</artifactId>
-      <version>4.0.1</version>
+      <!-- 使用spring boot 的时候一定要使用spring-boot的包   不然不给自动配置 -->
+      <!--<artifactId>mapper</artifactId>-->
+      <artifactId>mapper-spring-boot-starter</artifactId>
+      <!--<version>4.0.1</version>-->
+      <version>2.0.1</version>
     </dependency>
 
     <!-- 非阻塞式web 目前还没开始看 2018419 -->

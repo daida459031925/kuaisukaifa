@@ -1,6 +1,7 @@
 package bean;
 
 import org.apache.log4j.Logger;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //当写了的时候需要注意basePackages = {"bean","config"} 和数组一样对需要扫描的包进行赋值，这个样子就可以自定义包的存放位置.
 //当添加了ComponentScan这个以后必须需要指定你的主包，然后一次添加需要扫描的附包，不然就无法扫描到则无法运行.
 //@ImportResource("/xx/xx.xml")//导入指定xml此功能没有探究
+@MapperScan(basePackages = {"bean.Mapper"})//指定扫描包,这样就不用去每一个类中添加接口扫描
 public class Holle extends SpringBootServletInitializer {//返回jsp页面必须继承SpringBootServletInitializer类重写里面的方法
     private static Logger logger = Logger.getLogger(Holle.class);//打印log日志
     public static void main(String[] args) {

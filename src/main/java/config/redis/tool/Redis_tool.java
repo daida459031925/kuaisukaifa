@@ -1,4 +1,4 @@
-package config.redis.config.redis.tool;
+package config.redis.tool;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;

@@ -1,9 +1,9 @@
 package bean.Controller;
 
 import bean.Entity.UserEntity;
+import RestBaseController.BaseController;
 import bean.service.UserSerice;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
+import bean.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +13,11 @@ import tool.JSON;
 @Controller
 @RequestMapping("/User")
 //@Slf4j  日志依赖  org.projectlombok.lombok
-public class UserController /*之前的方式extends AbstractController*//* <Ba extends BasicDAO ,UserEntity>*/{
+public class UserController extends BaseController<UserService,UserEntity>
+        /*之前的方式extends AbstractController*/{
 
     @Autowired
     private UserSerice userSerice;
-
-//    @Autowired
-//    protected Ba basicDao;
 
     @RequestMapping("/reception/login.do")
     public String login(String id, String pws){
@@ -70,23 +68,24 @@ public class UserController /*之前的方式extends AbstractController*//* <Ba 
          * 返还对象必须是Page<T>这种类型  这样框架才会给你分页信息
          *
          */
-        Page<UserEntity> user=userSerice.fandAll(pageNO,pageSize);
+//        Page<UserEntity> user=userSerice.fandAll(pageNO,pageSize);
         /**
          * 将page对象放入pageInfo  进行序列化后然后有分页信息
          * 分页对象分页完毕后，不管是habeliete，还是mybites
          * 都是一样会出现一个问题就是当前端请求页数大于分页内容中最大值时
          * 不管以后如何添加分页的pageNO，都会返还最后一页的数据
          * */
-        PageInfo<UserEntity> pageInfo = new PageInfo<>(user);
-        System.out.println(pageInfo.getPageSize());
+//        PageInfo<UserEntity> pageInfo = new PageInfo<>(user);
+//        System.out.println(pageInfo.getPageSize());
 
 
         /**
          * 测试tk.mapper包的查询
          */
-//        basicDao.selectAll();
-        System.out.println();
-        return new JSON(pageInfo);//返还所有用户信息
+        basicDAO.getUserMapperList();
+        System.out.println(basicDAO.getUserMapperList());
+//        return new JSON(pageInfo);//返还所有用户信息
+        return null;
     }
 
     @RequestMapping("/reception/sortUser.do")
