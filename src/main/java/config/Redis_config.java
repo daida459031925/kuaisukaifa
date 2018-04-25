@@ -36,6 +36,9 @@ import java.lang.reflect.Method;
 //@PropertySource(value = {"application-redis.properties"})//此注解主要作用时实现指定properties的文件导入
 public class Redis_config extends CachingConfigurerSupport{
 
+    public Redis_config(){
+        System.out.println();
+    }
 
     //读取配置application文件中的key直接使用Value
     //import org.springframework.beans.factory.annotation.Value;

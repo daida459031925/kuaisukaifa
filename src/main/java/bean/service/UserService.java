@@ -23,7 +23,4 @@ public class UserService extends BasicDAO<UserMapper,UserEntity> {
         return mapper.getUserMapperList();
     }
 
-    public List<UserEntity> getUserMapperList1(){
-        return mapper.selectAll();
-    }
 }

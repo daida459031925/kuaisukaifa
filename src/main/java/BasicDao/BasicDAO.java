@@ -2,6 +2,7 @@ package BasicDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.spring.annotation.MapperScan;
 
 import java.util.List;
 
@@ -13,9 +14,14 @@ import java.util.List;
  * @param <M>
  * @param <T>
  */
+
 public abstract class BasicDAO <M extends Mapper<T>,T>{
     @Autowired
     protected M mapper;
+
+    public BasicDAO(){
+        System.out.println();
+    }
 
     public List<T> selectAll(){
         return this.mapper.selectAll();
