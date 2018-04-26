@@ -2,6 +2,8 @@ package bean.Controller;
 
 import bean.Entity.UserEntity;
 import bean.service.UserSerice;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -65,24 +67,16 @@ public class UserController/*之前的方式extends AbstractController*/{
          * 返还对象必须是Page<T>这种类型  这样框架才会给你分页信息
          *
          */
-//        Page<UserEntity> user=userSerice.fandAll(pageNO,pageSize);
+        Page<UserEntity> user=userSerice.fandAll(pageNO,pageSize);
         /**
          * 将page对象放入pageInfo  进行序列化后然后有分页信息
          * 分页对象分页完毕后，不管是habeliete，还是mybites
          * 都是一样会出现一个问题就是当前端请求页数大于分页内容中最大值时
          * 不管以后如何添加分页的pageNO，都会返还最后一页的数据
          * */
-//        PageInfo<UserEntity> pageInfo = new PageInfo<>(user);
-//        System.out.println(pageInfo.getPageSize());
-
-
-        /**
-         * 测试tk.mapper包的查询
-         */
-        userSerice.fandAll(1,1);
-        System.out.println(userSerice.fandAll(1,1));
-//        return new JSON(pageInfo);//返还所有用户信息
-        return null;
+        PageInfo<UserEntity> pageInfo = new PageInfo<>(user);
+        System.out.println(pageInfo.getPageSize());
+        return new JSON(pageInfo);//返还所有用户信息
     }
 
     @RequestMapping("/reception/sortUser.do")

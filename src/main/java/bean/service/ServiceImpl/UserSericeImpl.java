@@ -133,7 +133,6 @@ public class UserSericeImpl implements UserSerice {
      */
     @Override
     public Page<UserEntity> fandAll(int pageNO, int pageSize) {
-        userDao.selectAll();
 //        String key = "iiiiii";//这个地方为了简单直接写了KEY的值，实际上的架构应该实现或者创建一个类里面全部存放常量来进行同一管理，或者来实现配置文件来管理常量
 //        ValueOperations<String,Page<UserEntity>> s=redisTemplate.opsForValue();//使用redisTemplate和jdbcTemplate差不多而spring boot以及自动集成了redisTemplate所以只需要在application中配置好就可以直接使用
 //        if(redisTemplate.hasKey(key)){//这个位置是来判断redisTemplate中是否存在这个KEY不存在的话就走下面调用数据库，存在的话就直接返还，这样就可以节省下来很多数据查询时间
@@ -152,6 +151,7 @@ public class UserSericeImpl implements UserSerice {
         /**使用com.github.pagehelper.PageHelper 的包实现sql重写自动添加分页，然后自己在sql里添加过滤条件*/
         Page<UserEntity> user=userDao.fandAll();
         redis_tool.set(key,user,timeOut);
+        userDao.selectAll();
 //        s.set(key,user,60/*保存多少秒*/, TimeUnit.SECONDS/*单位是秒*/);//这个位置是保存KEY，保存数据，保存时间，Time的单位.内容很多这个是简单操作
         return user;
     }
