@@ -277,6 +277,13 @@
       <scope>test</scope>
     </dependency>-->
 
+
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.4.0</version>
+    </dependency>
+
     <!-- 比较牛逼的基础插入查找删除的 mybatis 实体应用类似于 hibernate的基础数据-->
     <dependency>
       <groupId>tk.mybatis</groupId>

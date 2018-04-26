@@ -20,10 +20,20 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+
+/**
+ * BasicDao 这个是所有的基础公共类
+ * 这个父类内容在代码中写入的是
+ * 增删查改，而传入的一个借口是自己实现的内容
+
+
+ @Service//相当于原来的service层
+ @Transactional(rollbackFor = Exception.class)//事物管理
+ */
 @Service
 //@PropertySource(value = {"application-redis.properties"})//此注解主要作用时实现指定properties的文件导入
 public class UserSericeImpl implements UserSerice {
-//    @Autowired
+    @Autowired
     private UserDao userDao;//不知道为什么会一直报错,但是不影响使用
 
     @Autowired
@@ -123,6 +133,7 @@ public class UserSericeImpl implements UserSerice {
      */
     @Override
     public Page<UserEntity> fandAll(int pageNO, int pageSize) {
+        userDao.selectAll();
 //        String key = "iiiiii";//这个地方为了简单直接写了KEY的值，实际上的架构应该实现或者创建一个类里面全部存放常量来进行同一管理，或者来实现配置文件来管理常量
 //        ValueOperations<String,Page<UserEntity>> s=redisTemplate.opsForValue();//使用redisTemplate和jdbcTemplate差不多而spring boot以及自动集成了redisTemplate所以只需要在application中配置好就可以直接使用
 //        if(redisTemplate.hasKey(key)){//这个位置是来判断redisTemplate中是否存在这个KEY不存在的话就走下面调用数据库，存在的话就直接返还，这样就可以节省下来很多数据查询时间

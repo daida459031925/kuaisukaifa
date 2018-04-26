@@ -1,9 +1,7 @@
 package bean.Controller;
 
 import bean.Entity.UserEntity;
-import RestBaseController.BaseController;
 import bean.service.UserSerice;
-import bean.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +11,7 @@ import tool.JSON;
 @Controller
 @RequestMapping("/User")
 //@Slf4j  日志依赖  org.projectlombok.lombok
-public class UserController extends BaseController<UserService,UserEntity>
-        /*之前的方式extends AbstractController*/{
+public class UserController/*之前的方式extends AbstractController*/{
 
     @Autowired
     private UserSerice userSerice;
@@ -82,8 +79,8 @@ public class UserController extends BaseController<UserService,UserEntity>
         /**
          * 测试tk.mapper包的查询
          */
-        basicDAO.getUserMapperList();
-        System.out.println(basicDAO.getUserMapperList());
+        userSerice.fandAll(1,1);
+        System.out.println(userSerice.fandAll(1,1));
 //        return new JSON(pageInfo);//返还所有用户信息
         return null;
     }

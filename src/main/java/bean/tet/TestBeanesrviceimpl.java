@@ -26,7 +26,7 @@ import java.util.List;
 public class TestBeanesrviceimpl implements TestBeanservice{
 
 
-//    @Autowired
+    @Autowired
     private TestBeanDao testBeanDao;
 
     public List<testBean> findAll(){
