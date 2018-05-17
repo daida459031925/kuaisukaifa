@@ -13,9 +13,13 @@ public class MD5 implements Serializable{
     /**
      * Created by yangyibo on 17/2/7.
      */
-        private static final String SALT = "583299e871fe3e6db8d2f98285a721ad";//防止被破解添加字符串进行处理
+    private static final String SALT = "583299e871fe3e6db8d2f98285a721ad";//防止被破解添加字符串进行处理
+    /**
+     * 为微信所有id和密钥进行加密的盐
+     */
+    private static final String salt="刀剣の神域";
         public static String encode(String password) {
-            password = password + SALT;
+            password = salt + password + SALT;
             MessageDigest md5 = null;
             try {
                 md5 = MessageDigest.getInstance("MD5");

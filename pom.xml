@@ -242,6 +242,14 @@
       <!-- 这个目前最新版本是1.4.7 而spring boot版本管理的最高版本是1.5.9因此需要指定版本 -->
     </dependency>
 
+    <!-- session+redis解决session共享问题
+    这个共享问题是针对于服务器的，浏览器端需要做单点的话就需要cas-->
+    <dependency>
+      <groupId>org.springframework.session</groupId>
+      <artifactId>spring-session-data-redis</artifactId>
+    </dependency>
+
+
     <!-- 目前只知道里面有String工具类
     在使用的使用一定要注意使用的包-->
     <dependency>
@@ -252,10 +260,10 @@
 
 
     <!--dubbo 分布式-->
-    <dependency>
-      <groupId>io.dubbo.springboot</groupId>
-      <artifactId>spring-boot-starter-dubbo</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>io.dubbo.springboot</groupId>-->
+      <!--<artifactId>spring-boot-starter-dubbo</artifactId>-->
+    <!--</dependency>-->
 
     <!--zookeeper 分布式-->
     <dependency>
@@ -295,10 +303,10 @@
     </dependency>
 
     <!-- 非阻塞式web 目前还没开始看 2018419 -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-webflux</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.boot</groupId>-->
+      <!--<artifactId>spring-boot-starter-webflux</artifactId>-->
+    <!--</dependency>-->
 
     <!-- xml解析器比DOM4J快6倍 -->
     <dependency>
