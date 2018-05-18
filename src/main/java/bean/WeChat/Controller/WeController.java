@@ -34,6 +34,7 @@ public class WeController{
             throw new RuntimeException();
        }
        Map map= Constant.getOpenid_Session_key(string);
+       //在这里需要进行map返回值的判断 若返回的值为某某某错误码的时候需要拦截。让用户重新登陆
        LOGGER.info(map.toString());
        String uuid= Constant.getUUID();
        LOGGER.info(uuid);
