@@ -53,4 +53,7 @@ public class WeController{
         LOGGER.info((req.getSession().getAttribute(string)).toString());
         return null;
     }
+
+
+
 }
