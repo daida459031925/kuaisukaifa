@@ -15,11 +15,10 @@ public class WeFilter implements javax.servlet.Filter{
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
         System.out.println("we------------------------------------------------调用前-----------------------------------------");
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res=(HttpServletResponse)servletResponse;
-
+        FilterConstant.utf8(req,res);//设置编码为utf8
         filterChain.doFilter(req,res);
         System.out.println("we---------------------------------------------调用后------------------------------------------");
     }

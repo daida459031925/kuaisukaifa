@@ -2,6 +2,8 @@ package Filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -20,9 +22,11 @@ public class Filter implements javax.servlet.Filter{
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
         System.out.println("------------------------------------------------调用前-----------------------------------------");
-        filterChain.doFilter(servletRequest,servletResponse);
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+        HttpServletResponse res=(HttpServletResponse)servletResponse;
+        FilterConstant.utf8(req,res);//设置编码为utf8
+        filterChain.doFilter(req,res);
         System.out.println("---------------------------------------------调用后------------------------------------------");
     }
 
