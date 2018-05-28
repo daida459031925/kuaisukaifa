@@ -35,6 +35,11 @@ public class WeController{
        }
        Map map= Constant.getOpenid_Session_key(string);
        //在这里需要进行map返回值的判断 若返回的值为某某某错误码的时候需要拦截。让用户重新登陆
+       Object openid= map.get("openid");
+       Object session_key= map.get("session_key");
+       if(openid==null || openid.toString().trim().isEmpty() && session_key==null || session_key.toString().trim().isEmpty()){
+           return new JSON(map.get("errcode"));
+       }
        LOGGER.info(map.toString());
        String uuid= Constant.getUUID();
        LOGGER.info(uuid);
@@ -49,6 +54,10 @@ public class WeController{
         String string=req.getParameter("session");
         if(string==null || string.trim().isEmpty()){
             throw new RuntimeException();
+        }
+        Object session_3rd =req.getSession().getAttribute("session");
+        if(session_3rd==null){
+            
         }
         LOGGER.info((req.getSession().getAttribute(string)).toString());
         return null;

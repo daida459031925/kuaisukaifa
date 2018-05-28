@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -81,7 +82,6 @@ public class Constant{
     public static Map getOpenid_Session_key(String js_code){
         String json=SMS(getHttp_authorization_code(js_code),http);
         Map mapTypes = JSON.parseObject(json);
-        tool.JSON Json = new tool.JSON();
         for (Object obj : mapTypes.keySet()){
             System.out.println("key为："+obj+"值为："+mapTypes.get(obj));
         }
@@ -89,8 +89,10 @@ public class Constant{
     }
 
     public static String getUUID(){
+        StringBuffer sb= new StringBuffer().append(new Date().getTime());
         String uuid = UUID.randomUUID().toString();
-        return uuid;
+        sb.append(uuid);
+        return sb.toString();
     }
 
     public static void main(String[] args) {

@@ -6,7 +6,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 @Configuration
 //maxInactiveIntervalInSeconds 默认是1800秒过期，这里测试修改为60秒
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds=60)//这个就是数据存储时间
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds=60*60)//这个就是数据存储时间(60一分钟*60一小时)
 public class SessionRedis{
 
 }
