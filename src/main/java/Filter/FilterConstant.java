@@ -15,6 +15,6 @@ public class FilterConstant {
 
     public static void utf8(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
         req.setCharacterEncoding("utf-8");
-        res.setContentType("text/html;charset=utf-8");
+//        res.setContentType("text/html;charset=utf-8");
     }
 }
