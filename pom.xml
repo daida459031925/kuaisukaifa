@@ -190,12 +190,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!--  jstl  -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-    </dependency>
-
     <!--SpringBoot 读取配置文件-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -230,8 +224,6 @@
       <type>pom</type>
     </dependency>-->
 
-
-
     <!-- 包含支持UI模版（Velocity，FreeMarker，JasperReports），
                    邮件服务，
                    脚本服务(JRuby)，
@@ -258,15 +250,6 @@
     </dependency>
 
 
-    <!-- 目前只知道里面有String工具类
-    在使用的使用一定要注意使用的包-->
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.7</version><!-- 目前2018124这时候是最新的3.7 -->
-    </dependency>
-
-
     <!--dubbo 分布式-->
     <!--<dependency>-->
       <!--<groupId>io.dubbo.springboot</groupId>-->
@@ -280,7 +263,6 @@
       <version>3.4.9</version>
     </dependency>
 
-
     <!--作者：Chinesszz-->
     <!--链接：https://www.jianshu.com/p/39410f3e4c40-->
     <!--來源：简书-->
@@ -293,11 +275,65 @@
       <scope>test</scope>
     </dependency>-->
 
-
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
       <version>3.4.0</version>
+    </dependency>
+
+    <!-- 非阻塞式web 目前还没开始看 2018419 -->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.boot</groupId>-->
+      <!--<artifactId>spring-boot-starter-webflux</artifactId>-->
+    <!--</dependency>-->
+
+    <!--热部署2-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!-- spring boot 集成aop -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+
+    <!--**********************************************************分割线 下面存放工具类*************************************************************************************-->
+
+
+<!--  Guava 是一个 Google 的基于java1.6的类库集合的扩展项目，
+包括 collections, caching, primitives support, concurrency libraries,
+ common annotations, string processing, I/O, 等等. 这些高质量的 API 可以使你的JAVa代码更加优雅，更加简洁-->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>r09</version>
+      <classifier>site</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>r09</version>
+    </dependency>
+
+    <!-- 目前只知道里面有String工具类
+        在使用的使用一定要注意使用的包-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.7</version><!-- 目前2018124这时候是最新的3.7 -->
+    </dependency>
+
+    <!-- xml解析器比DOM4J快6倍 -->
+    <dependency>
+      <groupId>xpp3</groupId>
+      <artifactId>xpp3</artifactId>
+      <version>1.1.4c</version>
     </dependency>
 
     <!-- 比较牛逼的基础插入查找删除的 mybatis 实体应用类似于 hibernate的基础数据-->
@@ -310,26 +346,12 @@
       <version>2.0.1</version>
     </dependency>
 
-    <!-- 非阻塞式web 目前还没开始看 2018419 -->
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-webflux</artifactId>-->
-    <!--</dependency>-->
-
-    <!-- xml解析器比DOM4J快6倍 -->
+    <!--  jstl  -->
     <dependency>
-      <groupId>xpp3</groupId>
-      <artifactId>xpp3</artifactId>
-      <version>1.1.4c</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
     </dependency>
 
-    <!--热部署2-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional>
-      <scope>provided</scope>
-    </dependency>
 
   </dependencies>
 </project>
