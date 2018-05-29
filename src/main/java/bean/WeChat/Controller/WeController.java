@@ -30,36 +30,43 @@ public class WeController{
     @ResponseBody
     public JSON getdata(HttpServletRequest req, HttpServletResponse res){
        String string=req.getParameter("js_code");
-       if(string==null || string.trim().isEmpty()){
-            throw new RuntimeException();
+       String session=req.getParameter("session");
+       boolean boolean_string= (string==null || string.trim().isEmpty());
+       boolean boolean_session= (session==null || session.trim().isEmpty());
+       if( boolean_string && boolean_session){
+           return new JSON("errcode需要一个完整的常量来进行数据的保证目前使用这个字符串算了");//登陆失败参数没有传入让他返回或者重启小程序
        }
-       Map map= Constant.getOpenid_Session_key(string);
-       //在这里需要进行map返回值的判断 若返回的值为某某某错误码的时候需要拦截。让用户重新登陆
-       Object openid= map.get("openid");
-       Object session_key= map.get("session_key");
-       if(openid==null || openid.toString().trim().isEmpty() && session_key==null || session_key.toString().trim().isEmpty()){
-           return new JSON(map.get("errcode"));
+       if(!boolean_session){
+           Object reqsession=req.getSession().getAttribute(session);
+           if(! (reqsession == null) ){
+                return new JSON(reqsession.toString());
+           }
        }
-       LOGGER.info(map.toString());
-       String uuid= Constant.getUUID();
-       LOGGER.info(uuid);
-       req.getSession().setAttribute(uuid,map.toString());
-       LOGGER.info((req.getSession().getAttribute(uuid)).toString());
-       return new JSON(uuid);
+
+       if(boolean_string){
+           //传入上来没有code 只有session的时候 这样就不能从新发送自己后台的3rd_session所以这时候返还错误码给前段让他获得code然后进行再次登陆
+           return new JSON("errcode需要一个完整的常量来进行数据的保证目前使用这个字符串算了");//登陆失败参数没有传入让他返回或者重启小程序
+       }
+            //如果传过来不为空的情况下则从新去腾讯里的服务器获取数据
+           Map map= Constant.getOpenid_Session_key(string);
+           //在这里需要进行map返回值的判断 若返回的值为某某某错误码的时候需要拦截。让用户重新登陆
+           Object openid= map.get("openid");
+           Object session_key= map.get("session_key");
+           if(openid==null || openid.toString().trim().isEmpty() && session_key==null || session_key.toString().trim().isEmpty()){
+               return new JSON("errcode需要一个完整的常量来进行数据的保证目前使用这个字符串算了");//登陆失败参数没有传入让他返回或者重启小程序
+           }
+           LOGGER.info(map.toString());
+           String uuid= Constant.getUUID();
+           LOGGER.info(uuid);
+           req.getSession().setAttribute(uuid,map.toString());
+           LOGGER.info((req.getSession().getAttribute(uuid)).toString());
+           return new JSON(uuid);
     }
 
     @RequestMapping(value = "/reception/getsession.do",method = RequestMethod.GET)
     @ResponseBody
     public JSON getsession(HttpServletRequest req, HttpServletResponse res){
-        String string=req.getParameter("session");
-        if(string==null || string.trim().isEmpty()){
-            throw new RuntimeException();
-        }
-        Object session_3rd =req.getSession().getAttribute("session");
-        if(session_3rd==null){
-            
-        }
-        LOGGER.info((req.getSession().getAttribute(string)).toString());
+
         return null;
     }
 
