@@ -1,7 +1,7 @@
 package bean.Controller;
 
 import bean.Entity.UserEntity;
-import bean.service.UserSerice;
+import bean.service.PcService.UserSerice;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

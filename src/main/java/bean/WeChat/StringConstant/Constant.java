@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,8 +43,7 @@ public class Constant{
      * @param postUrl     需要访问的链接地址  https://xxxxxxxx
      * @return
      */
-    private static String SMS(String postData, String postUrl) {
-        try {
+    private static String SMS(String postData, String postUrl) throws IOException {
             // 发送POST请求
             URL url = new URL(postUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -73,13 +73,10 @@ public class Constant{
             }
             in.close();
             return result;
-        } catch (IOException e) {
-            //这里代码需要优化到处都是catch 不行
-        }
-        return "";
     }
 
-    public static Map getOpenid_Session_key(String js_code){
+    public static Map getOpenid_Session_key(String js_code) throws InterruptedException, IOException {
+        Thread.sleep(500);
         String json=SMS(getHttp_authorization_code(js_code),http);
         Map mapTypes = JSON.parseObject(json);
         for (Object obj : mapTypes.keySet()){
@@ -96,6 +93,12 @@ public class Constant{
     }
 
     public static void main(String[] args) {
-        getOpenid_Session_key("071xDyw41PdTtL1vVPy41Wadw41xDywE");
+        try {
+            getOpenid_Session_key("071xDyw41PdTtL1vVPy41Wadw41xDywE");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package bean.service;
+package bean.service.PcService;
 
 import bean.Entity.UserEntity;
 import com.github.pagehelper.Page;

@@ -1,16 +1,15 @@
-package bean.service.ServiceImpl;
+package bean.service.PcService.ServiceImpl;
 
 
 import bean.Dao.UserDao;
 import bean.Entity.UserEntity;
 import bean.exception.*;
-import bean.service.UserSerice;
+import bean.service.PublicService.RedisSerice;
+import bean.service.PcService.UserSerice;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import config.redis.tool.Redis_tool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import tool.MD5;
 import tool.dianhuayanzheng;
@@ -32,18 +31,9 @@ import java.util.List;
  */
 @Service
 //@PropertySource(value = {"application-redis.properties"})//此注解主要作用时实现指定properties的文件导入
-public class UserSericeImpl implements UserSerice {
+public class UserSericeImpl extends RedisSerice implements UserSerice {
     @Autowired
     private UserDao userDao;//不知道为什么会一直报错,但是不影响使用
-
-    @Autowired
-    private RedisTemplate redisTemplate;//可以直接使用这个或者使用自己封装的工具类
-
-    @Autowired
-    private Redis_tool redis_tool;
-
-    @Value(value = "${spring.redis.timeout}")
-    public Long timeOut;//依赖注入的时候不能用static
 
     /**
      *
