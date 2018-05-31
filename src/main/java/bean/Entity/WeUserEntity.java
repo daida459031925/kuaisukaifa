@@ -40,6 +40,16 @@ public class WeUserEntity implements Serializable{
     @Column
     private String phone;
 
+    private Object object;
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
+    }
+
     @Override
     public String toString() {
         return "WeUserEntity{" +

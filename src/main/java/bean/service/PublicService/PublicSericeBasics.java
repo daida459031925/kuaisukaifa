@@ -10,4 +10,5 @@ public interface PublicSericeBasics<T>{
     public int add(T t) throws ClassNotFoundException;
     public int del(T t);
     public int up(T t);
+    public T selectKEY(T t,String ...strings) throws ClassNotFoundException;
 }

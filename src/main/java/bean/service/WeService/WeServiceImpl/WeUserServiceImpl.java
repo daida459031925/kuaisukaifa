@@ -12,6 +12,7 @@ import tool.ExampleTool;
 import tool.PropertiesTool;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class WeUserServiceImpl extends RedisSerice implements WeUserService{
@@ -41,13 +42,17 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
         /**
          * 通过java反射获取到Example对象
          */
-        ExampleTool.getExample(PropertiesTool.getProperties("WeUserEntity"));
-//        Example example=new Example(klass);
-//        example
-//        WeUserEntity WeUser=weUserDao.selectOneByExample();
-        weUserEntity.setAdd_time(new Date());
-//        int insert=weUserDao.insert(weUserEntity);
-        return 2;
+        Example example=ExampleTool.getExample(PropertiesTool.getProperties("WeUserEntity"));
+        Example.Criteria criteria=example.createCriteria();
+        criteria.andEqualTo("openid",weUserEntity.getOpenid());//这里面的东西可以集成写成完成的工具类 写好的前辈的项目ag_admin
+        WeUserEntity WeUser=weUserDao.selectOneByExample(example);
+        int insert=0;
+        if(WeUser==null){
+            //还没有做数据验证
+            weUserEntity.setAdd_time(new Date());
+            insert=weUserDao.insert(weUserEntity);
+        }
+        return insert;
     }
 
     @Override
@@ -58,6 +63,27 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
     @Override
     public int up(WeUserEntity weUserEntity) {
         return 0;
+    }
+
+    @Override
+    public WeUserEntity selectKEY(WeUserEntity weUserEntity,String... string) throws ClassNotFoundException {
+        WeUserEntity weUser=weUserDao.selectByPrimaryKey(weUserEntity.getOpenid());
+        String uuid = "";
+        for (String uuids:string){
+            uuid = uuids;
+        }
+        if( weUser==null){
+
+        }else{
+            //数据库中存在
+            String key=Redis_tool.getBaoming_Classname_fangfaming(this,weUser.getOpenid());
+            if(redis_tool.exists(key)){
+                System.err.println("这里测试缓存机制内容***********************************");
+                weUser.setObject(redis_tool.get(key));
+            }
+            redis_tool.set(key,weUser.getObject().toString(),timeOut);
+        }
+        return weUser;
     }
 
 }
