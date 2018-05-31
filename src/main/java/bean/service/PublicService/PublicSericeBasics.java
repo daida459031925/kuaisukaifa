@@ -7,7 +7,7 @@ public interface PublicSericeBasics<T>{
      * @param t
      * @return
      */
-    public int add(T t);
+    public int add(T t) throws ClassNotFoundException;
     public int del(T t);
     public int up(T t);
 }

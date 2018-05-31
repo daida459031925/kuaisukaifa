@@ -37,8 +37,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //当添加了ComponentScan这个以后必须需要指定你的主包，然后一次添加需要扫描的附包，不然就无法扫描到则无法运行.
 //@ImportResource("/xx/xx.xml")//导入指定xml此功能没有探究
 @MapperScan(basePackages = {"bean.Mapper"})//指定扫描包,这样就不用去每一个类中添加接口扫描
-public class Holle extends SpringBootServletInitializer {//返回jsp页面必须继承SpringBootServletInitializer类重写里面的方法
-    private static Logger logger = Logger.getLogger(Holle.class);//打印log日志
+public class Holle extends SpringBootServletInitializer implements PublicLog{//返回jsp页面必须继承SpringBootServletInitializer类重写里面的方法
+    //private static Logger logger = Logger.getLogger(Holle.class);//打印log日志
     public static void main(String[] args) {
         SpringApplication.run(Holle.class);//启动项目时候直接在main方法run一下
     }

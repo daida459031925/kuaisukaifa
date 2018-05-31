@@ -1,7 +1,6 @@
 package bean.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import bean.PublicLog;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,10 +14,11 @@ import tool.JSON;
 @CrossOrigin//跨域请求   可以使用spring boot进行配置
 @ControllerAdvice//这个注解实现全局异常检查
 @PropertySource(value = {"changliang.properties"})
-public /*之前的方式abstract */class AbstractController {
+public /*之前的方式abstract */class AbstractController implements PublicLog{
     //这里导包为import org.slf4j.Logger;
     //import org.slf4j.LoggerFactory;
-    private static Logger LOGGER = LoggerFactory.getLogger(AbstractController.class);
+    //采用接口的方式lo4j和slf4j  两个记录要用哪个就打印哪个
+    //private static Logger LOGGER = LoggerFactory.getLogger(AbstractController.class);
     /**
      * 其他Controller在继承这个类后    将所用异常添加进来 只需要继承 防止代码重复啰嗦
      * 在其他控制器方法执行出现异常时候, 执行

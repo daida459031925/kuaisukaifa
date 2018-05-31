@@ -1,4 +1,5 @@
 package tool;
+import bean.PublicLog;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -7,8 +8,8 @@ import java.security.MessageDigest;
  * MD5加密工具
  *
  */
-public class MD5 implements Serializable{
-    private static Logger logger = Logger.getLogger(MD5.class);//打印log日志
+public class MD5 implements Serializable, PublicLog{
+    //private static Logger logger = Logger.getLogger(MD5.class);//打印log日志
     private static final long serialVersionUID = 1L;
     /**
      * Created by yangyibo on 17/2/7.
