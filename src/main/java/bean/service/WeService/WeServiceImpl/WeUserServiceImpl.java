@@ -21,14 +21,14 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
     private WeUserDao weUserDao;
 
     public int add(WeUserEntity weUserEntity) throws ClassNotFoundException {
-        String key= Redis_tool.getBaoming_Classname_fangfaming(this,weUserEntity.getOpenid());
-        if(redis_tool.exists(key)){
+//        String key= Redis_tool.getBaoming_Classname_fangfaming(this,weUserEntity.getOpenid());
+//        if(redis_tool.exists(key)){
             /**
              * 如果存在在redis中的话就直接返回0证明没有添加到数据库中
              */
-            System.err.println("这里测试缓存机制内容***********************************");
-            return 0;
-        }
+//            System.err.println("这里测试缓存机制内容***********************************");
+//            return 0;
+//        }
         /**
          * 如果redis中没有有的话
          * 1.首先执行查找
@@ -42,16 +42,16 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
         /**
          * 通过java反射获取到Example对象
          */
-        Example example=ExampleTool.getExample(PropertiesTool.getProperties("WeUserEntity"));
-        Example.Criteria criteria=example.createCriteria();
-        criteria.andEqualTo("openid",weUserEntity.getOpenid());//这里面的东西可以集成写成完成的工具类 写好的前辈的项目ag_admin
-        WeUserEntity WeUser=weUserDao.selectOneByExample(example);
-        int insert=0;
-        if(WeUser==null){
+//        Example example=ExampleTool.getExample(PropertiesTool.getProperties("WeUserEntity"));
+//        Example.Criteria criteria=example.createCriteria();
+//        criteria.andEqualTo("openid",weUserEntity.getOpenid());//这里面的东西可以集成写成完成的工具类 写好的前辈的项目ag_admin
+//        WeUserEntity WeUser=weUserDao.selectOneByExample(example);
+//        int insert=0;
+//        if(WeUser==null){
             //还没有做数据验证
             weUserEntity.setAdd_time(new Date());
-            insert=weUserDao.insert(weUserEntity);
-        }
+            int insert=weUserDao.insert(weUserEntity);
+//        }
         return insert;
     }
 
@@ -62,7 +62,9 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
 
     @Override
     public int up(WeUserEntity weUserEntity) {
-        return 0;
+        weUserEntity.setUp_time(new Date());
+        int up=weUserDao.updateByPrimaryKey(weUserEntity);
+        return up;
     }
 
     @Override
@@ -73,15 +75,19 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
             uuid = uuids;
         }
         if( weUser==null){
-
+            //如果等于null那么就需要把意外情况给前端  需要让他重新发送或者点击绑定
         }else{
             //数据库中存在
             String key=Redis_tool.getBaoming_Classname_fangfaming(this,weUser.getOpenid());
             if(redis_tool.exists(key)){
+                //如果存在就将user中的object里的对象设置为需要传输的UUID
                 System.err.println("这里测试缓存机制内容***********************************");
                 weUser.setObject(redis_tool.get(key));
+                return weUser;
             }
-            redis_tool.set(key,weUser.getObject().toString(),timeOut);
+            //如果不是或者没有那么将生产出来的uuid赋值给redis
+            redis_tool.set(key,uuid,timeOut);
+            weUser.setObject(redis_tool.get(key));
         }
         return weUser;
     }

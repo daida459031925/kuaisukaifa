@@ -39,6 +39,16 @@ public class WeUserEntity implements Serializable{
     private String avatar_url;
     @Column
     private String phone;
+    @Column
+    private Date up_time;
+
+    public Date getUp_time() {
+        return up_time;
+    }
+
+    public void setUp_time(Date up_time) {
+        this.up_time = up_time;
+    }
 
     private Object object;
 
