@@ -10,10 +10,29 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-06-01 09:00:33
+Date: 2018-06-01 18:30:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for check-in-table
+-- ----------------------------
+DROP TABLE IF EXISTS `check-in-table`;
+CREATE TABLE `check-in-table` (
+  `detailed_information` varchar(255) DEFAULT '' COMMENT '详细地址一般会说是神什么附近',
+  `latitude` varchar(255) DEFAULT '' COMMENT '维度这个是谷歌地图的',
+  `longitude` varchar(255) DEFAULT '' COMMENT '精度这个是谷歌地图的',
+  `street_number` varchar(255) DEFAULT '' COMMENT '地理位置xx街道xx号',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长主键',
+  `openid` varchar(255) NOT NULL DEFAULT '' COMMENT 'openid和user关联对应',
+  `add_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of check-in-table
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -49,11 +68,12 @@ CREATE TABLE `weuser` (
   `country` varchar(255) DEFAULT NULL COMMENT '国家',
   `avatar_url` longtext COMMENT '头像',
   `phone` varchar(11) DEFAULT NULL COMMENT '电话(手机)',
-  `add_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `add_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `up_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`openid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of weuser
 -- ----------------------------
-INSERT INTO `weuser` VALUES ('or6Xl5XRfpcYL0lqHRqpnx_2iA20', 'HSP', '1', 'zh_CN', '黄石', '湖北', '中国', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIMXibIkdO2qQuwzcH6pmax6C5zctReY4Qhqfmbbq9A88Av4RcianREREsBDNWnuXKTOfSPibqicricjHw/132', '18062284509', '2018-05-31 16:04:54');
+INSERT INTO `weuser` VALUES ('or6Xl5XRfpcYL0lqHRqpnx_2iA20', 'HSP', '1', 'zh_CN', '黄石', '湖北', '中国', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIMXibIkdO2qQuwzcH6pmax6C5zctReY4Qhqfmbbq9A88Av4RcianREREsBDNWnuXKTOfSPibqicricjHw/132', '18062284509', '2018-06-01 14:54:41', '2018-06-01 14:54:57');
