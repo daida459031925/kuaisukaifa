@@ -1,5 +1,7 @@
 package bean.service.PublicService;
 
+import java.util.List;
+
 public interface PublicSericeBasics<T>{
 
     /**
@@ -11,4 +13,5 @@ public interface PublicSericeBasics<T>{
     public int del(T t);
     public int up(T t);
     public T selectKEY(T t,String ...strings) throws ClassNotFoundException;
+    public List<T> selectAllKEY(T t, String ...strings) throws ClassNotFoundException;
 }

@@ -85,7 +85,21 @@ public class Redis_tool {
      * @return
      */
     public void set(final String key,Object value,Long expireTime){
-        redisTemplate.opsForValue().set(key,value,expireTime, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(key,value,expireTime, TimeUnit.SECONDS);//timeUnit是时间的单位
+        //或者调用这个
+        //redisTemplate.opsForValue().set(key, value);
+        //redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);
+    }
+
+    /**
+     * @Description: 刷新缓存
+     * @param key
+     * @param value
+     * @param expireTime
+     * @return
+     */
+    public void surpass(final String key,Long expireTime){
+        redisTemplate.expire(key,expireTime, TimeUnit.SECONDS);//timeUnit是时间的单位
         //或者调用这个
         //redisTemplate.opsForValue().set(key, value);
         //redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);

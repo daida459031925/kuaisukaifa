@@ -78,7 +78,7 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
             //如果等于null那么就需要把意外情况给前端  需要让他重新发送或者点击绑定
         }else{
             //数据库中存在
-            String key=Redis_tool.getBaoming_Classname_fangfaming(this,weUser.getOpenid());
+            String key = weUser.getOpenid();
             if(redis_tool.exists(key)){
                 //如果存在就将user中的object里的对象设置为需要传输的UUID
                 System.err.println("这里测试缓存机制内容***********************************");
@@ -87,9 +87,15 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
             }
             //如果不是或者没有那么将生产出来的uuid赋值给redis
             redis_tool.set(key,uuid,timeOut);
+            redis_tool.set(uuid,weUserEntity.getOpenid(),timeOut);
             weUser.setObject(redis_tool.get(key));
         }
         return weUser;
+    }
+
+    @Override
+    public List<WeUserEntity> selectAllKEY(WeUserEntity weUserEntity, String... strings) throws ClassNotFoundException {
+        return null;
     }
 
 }

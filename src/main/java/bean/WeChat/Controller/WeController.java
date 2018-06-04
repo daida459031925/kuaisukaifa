@@ -81,14 +81,14 @@ public class WeController implements PublicLog {
        //生产uuid
        String uuid= Constant.getUUID();;
        //返回的这个对象中就是带有uuid的object
-       WeUserEntity weUser=weUserService.selectKEY(weUserEntity,uuid);
+       WeUserEntity weUser=weUserService.selectKEY(weUserEntity,uuid); //这里面直接是放在redis并没有共享session
        if(weUser==null){
            //这样说明数据库中没有这条数据
            int count=weUserService.add(weUserEntity);
            if(count==1){
 //               logger.info(map.toString());
 //               logger.info(uuid);
-               req.getSession().setAttribute(uuid,map.toString());
+               req.getSession().setAttribute(uuid,map.toString());//这里面是共享session的逻辑
                weUserEntity.setObject(uuid);
                logger.info((req.getSession().getAttribute(uuid)).toString());
            }

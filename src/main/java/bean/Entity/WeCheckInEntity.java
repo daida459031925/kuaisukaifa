@@ -4,14 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Table
+@Table(name="check_in_table")
 public class WeCheckInEntity implements Serializable{
 
     //INSERT INTO `daida`.
     // `check-in-table` (`detailed_information`, `latitude`, `longitude`, `street_number`, `id`, `openid`, `add_time`)
     // VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Id
     private Integer id;
@@ -37,7 +40,7 @@ public class WeCheckInEntity implements Serializable{
                 ", longitude='" + longitude + '\'' +
                 ", street_number='" + street_number + '\'' +
                 ", openid='" + openid + '\'' +
-                ", add_time=" + add_time +
+                ", add_time=" + sdf.format(add_time) +
                 '}';
     }
 

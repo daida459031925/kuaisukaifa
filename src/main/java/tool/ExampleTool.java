@@ -1,6 +1,5 @@
 package tool;
 
-import bean.Entity.WeUserEntity;
 import com.google.common.collect.Maps;
 import tk.mybatis.mapper.entity.Example;
 
