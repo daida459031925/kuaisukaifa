@@ -2,20 +2,18 @@ package bean.service.WeService.WeServiceImpl;
 
 import bean.Dao.WeUserDao;
 import bean.Entity.WeUserEntity;
+import bean.PublicLog;
 import bean.service.PublicService.RedisSerice;
 import bean.service.WeService.WeUserService;
-import config.redis.tool.Redis_tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
-import tool.ExampleTool;
-import tool.PropertiesTool;
+
 
 import java.util.Date;
 import java.util.List;
 
 @Service
-public class WeUserServiceImpl extends RedisSerice implements WeUserService{
+public class WeUserServiceImpl extends RedisSerice implements WeUserService, PublicLog{
 
     @Autowired
     private WeUserDao weUserDao;
@@ -83,9 +81,13 @@ public class WeUserServiceImpl extends RedisSerice implements WeUserService{
                 //如果存在就将user中的object里的对象设置为需要传输的UUID
                 System.err.println("这里测试缓存机制内容***********************************");
                 weUser.setObject(redis_tool.get(key));
+                logger.info(weUser);
                 return weUser;
             }
             //如果不是或者没有那么将生产出来的uuid赋值给redis
+            //出现一个redis问题就是当openid消失的时候，但是这个时候存在未消失的session_3rd目前最长为10分钟，并且不会影响用户使用
+            //但是这十分钟内如果数据量大的话，那就会出现一个在redis中大量冗余数据以及内存的超负荷
+            //并且这个就是十分钟。也就是说10个人要占有20个人的内存。在大数据方向需要节省服务器价格呀，内存很贵的。
             redis_tool.set(key,uuid,timeOut);
             redis_tool.set(uuid,weUserEntity.getOpenid(),timeOut);
             weUser.setObject(redis_tool.get(key));
