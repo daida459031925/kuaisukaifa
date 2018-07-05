@@ -7,6 +7,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -19,13 +20,14 @@ import java.util.Map;
  * Aspect横切面类
  */
 //@Component
-//@Aspect
+@Configuration
+@Aspect
 public class WebControllerAop {
 
     //匹配com.zkn.learnspringboot.web.controller包及其子包下的所有类的所有方法
-    @Pointcut("execution(* com.zkn.learnspringboot.web.controller..*.*(..))")
+    @Pointcut("execution(* bean.service..*..*(..))")
     public void executeService(){
-
+        System.out.println("********************");
     }
 
     /**
@@ -76,13 +78,13 @@ public class WebControllerAop {
      * @param joinPoint
      * @param keys
      */
-    @AfterReturning(value = "execution(* com.zkn.learnspringboot.web.controller..*.*(..))",returning = "keys")
+    @AfterReturning(value = "execution(* bean.service..*..*(..))",returning = "keys")
     public void doAfterReturningAdvice1(JoinPoint joinPoint,Object keys){
 
         System.out.println("第一个后置返回通知的返回值："+keys);
     }
 
-    @AfterReturning(value = "execution(* com.zkn.learnspringboot.web.controller..*.*(..))",returning = "keys",argNames = "keys")
+    @AfterReturning(value = "execution(* bean.service..*..*(..))",returning = "keys",argNames = "keys")
     public void doAfterReturningAdvice2(String keys){
 
         System.out.println("第二个后置返回通知的返回值："+keys);
@@ -120,7 +122,7 @@ public class WebControllerAop {
      *   环绕通知非常强大，可以决定目标方法是否执行，什么时候执行，执行时是否需要替换方法参数，执行完毕是否需要替换返回值。
      *   环绕通知第一个参数必须是org.aspectj.lang.ProceedingJoinPoint类型
      */
-    @Around("execution(* com.zkn.learnspringboot.web.controller..*.testAround*(..))")
+    @Around("execution(* bean.service..*..*(..))")
     public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
         System.out.println("环绕通知的目标方法名："+proceedingJoinPoint.getSignature().getName());
         try {//obj之前可以写目标方法执行前的逻辑
