@@ -1,4 +1,4 @@
-package bean.BuilderMode;
+package bean.BuilderPatternMode;
 
 import java.math.BigDecimal;
 

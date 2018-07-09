@@ -1,4 +1,4 @@
-package bean.BuilderMode;
+package bean.BuilderPatternMode;
 
 public abstract class ABCBank implements UnionPay{
     @Override
