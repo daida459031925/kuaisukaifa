@@ -1,4 +1,4 @@
-package bean.BuilderPatternMode.Combiner;
+package bean.DesignPattern.BuilderPatternMode.Combiner;
 
 import java.util.HashMap;
 import java.util.Map;

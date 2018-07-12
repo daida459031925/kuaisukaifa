@@ -1,6 +1,6 @@
-package bean.BuilderPatternMode.BankCard;
+package bean.DesignPattern.BuilderPatternMode.BankCard;
 
-import bean.BuilderPatternMode.UnionPay;
+import bean.DesignPattern.BuilderPatternMode.UnionPay;
 
 /**
  * 主要来实现接口中共有属性，也许有些共有属性在当前银行总类不好实现，

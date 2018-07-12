@@ -1,7 +1,4 @@
-package bean.BuilderPatternMode.Combiner;
-
-import bean.BuilderPatternMode.BankCard.ICBCBank;
-import bean.BuilderPatternMode.UnionPay;
+package bean.DesignPattern.BuilderPatternMode.Combiner;
 
 import java.util.HashMap;
 import java.util.Map;

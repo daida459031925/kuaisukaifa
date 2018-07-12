@@ -1,6 +1,6 @@
-package bean.BuilderPatternMode.BankCard;
+package bean.DesignPattern.BuilderPatternMode.BankCard;
 
-import bean.BuilderPatternMode.UnionPay;
+import bean.DesignPattern.BuilderPatternMode.UnionPay;
 
 public abstract class ICBCBank implements UnionPay {
 
