@@ -302,6 +302,16 @@
       <artifactId>spring-boot-starter-aop</artifactId>
     </dependency>
 
+    <!-- swagger 编写规范 -->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+    </dependency>
+
     <!--**********************************************************分割线 下面存放工具类*************************************************************************************-->
 
 
