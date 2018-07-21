@@ -302,7 +302,8 @@
       <artifactId>spring-boot-starter-aop</artifactId>
     </dependency>
 
-    <!-- swagger 编写规范 -->
+    <!-- swagger 编写规范 这个的作用就是用来生产api的一个文档这个文档还是网页版本的。也就是制作一个接口的规范
+    可以用作公司对内的人员接口的使用-->
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
