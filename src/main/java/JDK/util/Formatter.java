@@ -23,5 +23,7 @@ public class Formatter {
             e.printStackTrace();
         }
         log.info(formatter.out().toString());
+        formatter = new java.util.Formatter(System.out);//这个地方传入输出流，这样会直接输出
+        formatter.format("%8d",1000);
     }
 }
