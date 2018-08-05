@@ -1,5 +1,6 @@
 package bean.tet;
 
+import bean.Rabbit.HelloSender;
 import bean.exception.AbstractController;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
@@ -20,13 +21,20 @@ public class testBeanController /*之前的方式extends AbstractController*/{
     @Autowired
     private TestBeanesrviceimpl testBeanesrviceimpl;
 
+    @Autowired
+    private HelloSender helloSender;
+
     @RequestMapping("/test.do")//测试demo是连接本地数据库
 //    @ResponseBody
     public  String test(){
-        System.out.println("**************************************************************");
-        List<testBean> m=testBeanesrviceimpl.findAll();
-        System.out.println(m);
-        return m.toString();
+        for(int i=0;i<1;i++){
+            helloSender.send(i+"");
+        }
+//        System.out.println("**************************************************************");
+//        List<testBean> m=testBeanesrviceimpl.findAll();
+//        System.out.println(m);
+
+        return "";
     }
 
 
