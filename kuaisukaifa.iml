@@ -156,6 +156,7 @@
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
     <orderEntry type="library" name="Maven: jline:jline:0.9.94" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty:3.10.5.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.101tec:zkclient:0.9" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.4.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework.boot:spring-boot-devtools:1.5.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:1.5.9.RELEASE" level="project" />

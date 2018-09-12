@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <title>登录页面</title>
 </head>
-<body>
+<script>
+    function go() {
+        console.log("-***********************")
+        window.location.href='http://www.baidu.com';
+    }
+</script>
+<body onbeforeunload="go();">
 <!-- 默认页面位置是index.html  这个是spring-boot-starter-thymeleaf 里面带的
  下建立static和templates两个文件夹
 static默认存放js、css等静态资源

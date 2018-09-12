@@ -268,6 +268,16 @@
       <artifactId>zookeeper</artifactId>
       <version>3.4.9</version>
     </dependency>
+    <!--zookeeper 连接器。可以在Java中链接上zk 去掉主项目中的zk连接器
+    1.不和主项目进行关联方便拆分
+    2.不会关联
+    3.将分项目变成单独的小项目，方便单独部署以及模块之间的独立性
+    考虑之后这个zk连接器还是需要的。可能会在这个里面写上正常内容。目前测试内容到zk子模块中去-->
+    <dependency>
+      <groupId>com.101tec</groupId>
+      <artifactId>zkclient</artifactId>
+      <version>0.9</version>
+    </dependency>
 
     <!--作者：Chinesszz-->
     <!--链接：https://www.jianshu.com/p/39410f3e4c40-->
