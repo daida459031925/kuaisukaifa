@@ -79,7 +79,7 @@ public class ZookeeperImproveLock implements Lock{
         //所有没有加入的从002开始开始枷锁
         // 002的锁对象是001 001收到删除通知后实际上002的就是没有锁的对象
         // 003锁的是002这样一来就形成一个链表，但是这些数据存储在都是服务器的内存中。压力没有减轻。只是保证了
-        // 服务的顺序性/
+        // 服务的顺序性 线上环境使用这个的话需要配合  熔点断路使用降级策略以及rebbitmq等线性流程不然数据量太大会压垮zk/
         IZkDataListener listener = new IZkDataListener() {
             /**
              * 删除节点监听器
