@@ -26,6 +26,8 @@ import java.util.concurrent.locks.Lock;
  * zkServer.sh      ===》   ZOO_USER_CFG="-Djute.maxbuffer=10240000"
  *
  * 单台zk服务器的并发数是100
+ *
+ * 使用zk来实现分布式锁还好，服务注册与发现的话可能会存在bug
  */
 
 public class ZookeeperImproveLock implements Lock{
