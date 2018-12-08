@@ -37,6 +37,12 @@ public class testBeanController /*之前的方式extends AbstractController*/{
         return "";
     }
 
+    @RequestMapping("/add.do")//测试demo是连接本地数据库
+    public  String add(){
+        testBeanesrviceimpl.add();
+        return "";
+    }
+
 
 
     @RequestMapping("/test1.do")

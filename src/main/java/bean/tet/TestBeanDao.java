@@ -19,10 +19,11 @@ public interface TestBeanDao {
 //    @Select("<script>" +"select * from p_post <if test= \"1 == 1 \"> where id != 1 </if>" + "</script>")
     public List<testBean> findAll();
 
-//     @Options(useGeneratedKeys = true, keyProperty = "userId")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
 //     @Insert("insert into sys_user (`username`, `password`, `email`, `mobile`, `status`, `user_id_create`, `gmt_create`, `gmt_modified`, `name`)"
 //     + "values (#{username}, #{password}, #{email}, #{mobile}, #{status}, #{userIdCreate}, #{gmtCreate}, #{gmtModified}, #{name})")
-     int save(testBean obj);
+    @Insert("INSERT INTO `p_post` ( `title`, `person_id`) VALUES ('今天天气不错','1')")
+     int save(/*testBean obj*/);
 
 
 //

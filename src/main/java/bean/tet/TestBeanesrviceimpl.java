@@ -22,7 +22,7 @@ import java.util.List;
 
 
 @Service
-@Transactional(readOnly = true)//开启事务
+@Transactional(readOnly = true)//开启事务//只读模式
 public class TestBeanesrviceimpl implements TestBeanservice{
 
 
@@ -37,5 +37,10 @@ public class TestBeanesrviceimpl implements TestBeanservice{
     public Page<testBean> findByPage(int pageNo, int pageSize) {
         PageHelper.startPage(pageNo, pageSize);
         return testBeanDao.findByPage();
+    }
+
+    public int add(){
+        int s=testBeanDao.save();
+        return s;
     }
 }
